@@ -1,0 +1,102 @@
+# =============== #
+# Unity generated #
+# =============== #
+
+# Unity's Asset meta data
+*.pidb.meta
+*.pidb
+*.pdb
+
+# Unity3D generated file on crash reports
+sysinfo.txt
+
+# Builds
+*.apk
+*.aab
+*.unitypackage
+*.app
+*.exe
+*.apk
+*.xcodeproj
+*.xcworkspace
+*.xcuserstate
+*.xcuserdata
+*.ipa
+
+# Crash Reports
+crash/
+
+# =================================== #
+# Mono auto generated files           #
+# =================================== #
+mono_crash.*
+
+# ============ #
+# OS Generated #
+# ============ #
+.DS_Store
+*.swp
+*.swo
+Thumbs.db
+
+# ==================== #
+# Visual Studio / Mono #
+# ==================== #
+.vscode/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+
+# ============ #
+# Build Folders #
+# ============ #
+build/
+Build/
+Builds/
+[Bb]uild/
+[Bb]uilds/
+
+# =============== #
+# Library Folder  #
+# =============== #
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Oo]ut/
+[Bb]uild/
+[Ll]ogs/
+[Mm]emoryCaptures/
+
+# =========== #
+# Asset Store #
+# =========== #
+/[Ss]tore[Aa]ssets/
+
+# ================= #
+# LightmapSnapshot   #
+# ================= #
+LightmapSnapshot/
+
+# ===================================== #
+# Auto-generated / user preference data #
+# ===================================== #
+*.csproj
+*.pidb
+*.userprefs
+*.user
+*.suo
+*.tmp
+*.sln
+*.swp
+
+# ================== #
+# Unity cache server  #
+# ================== #
+/[Ll]ibrary/
+/Library
