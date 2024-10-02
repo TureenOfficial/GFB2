@@ -308,7 +308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1119,7 +1119,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -1201,7 +1201,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.051886797, g: 0.62038755, b: 1, a: 0}
+  m_BackGroundColor: {r: 0, g: 0.49788237, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2204,8 +2204,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4291124480
-  m_fontColor: {r: 0, g: 0.36456963, b: 0.7735849, a: 1}
+    rgba: 4294951936
+  m_fontColor: {r: 0, g: 0.7698326, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3713,7 +3713,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 6
   m_TargetDisplay: 0
 --- !u!224 &1302309306
 RectTransform:
@@ -3943,6 +3943,7 @@ MonoBehaviour:
   pipeHard: {fileID: 8246822547920310931, guid: 8c935519348bc5b49a596dba261b925b, type: 3}
   spawnTime: 1.7
   heightOfst: 1.6
+  pipeType: {fileID: 0}
 --- !u!1 &1400105183
 GameObject:
   m_ObjectHideFlags: 0
@@ -4628,6 +4629,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LOGICscript: {fileID: 1680652864}
   xpgranted: 0
+  grantedMult: 0
   currentxp: 0
 --- !u!1 &1775407644
 GameObject:
@@ -5223,7 +5225,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &2142788487
 RectTransform:

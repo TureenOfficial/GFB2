@@ -4656,7 +4656,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1266783483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6304,6 +6304,7 @@ MonoBehaviour:
   pipeHard: {fileID: 8246822547920310931, guid: 45a6db1420a28044893da0e92388aa49, type: 3}
   spawnTime: 0
   heightOfst: 0
+  pipeType: {fileID: 0}
 --- !u!4 &1659319414
 Transform:
   m_ObjectHideFlags: 0
@@ -8211,7 +8212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2142788484
 MonoBehaviour:
   m_ObjectHideFlags: 0

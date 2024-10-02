@@ -22,9 +22,7 @@ public class PipeMove : MonoBehaviour
     }
     public void Start()
     {
-        float msFloat;
-        moveSpeed = msFloat;
-
+        float msFloat = 0f;
         //refactored 2/10/24 GOING TO SCHOOL
         if(SceneManager.GetActiveScene().name != "MainMenu")
         {
@@ -47,6 +45,7 @@ public class PipeMove : MonoBehaviour
         {
             msFloat = 4f;
         }
+        moveSpeed = msFloat;
             
     }
 }

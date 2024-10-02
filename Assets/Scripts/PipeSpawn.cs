@@ -12,6 +12,8 @@ public class PipeSpawn : MonoBehaviour
     public float spawnTime;
     private float _Timer;
     public float heightOfst;
+    public GameObject pipeType;
+
     void Start()
     {
         SpawnPipe();
@@ -19,7 +21,6 @@ public class PipeSpawn : MonoBehaviour
 
     void Update()
     {
-        StartCoroutine(RandomizeTime());
         if(_Timer < spawnTime)
         {
             _Timer += Time.deltaTime;
@@ -33,44 +34,46 @@ public class PipeSpawn : MonoBehaviour
     }
     void SpawnPipe()
     {
+        float timerMin = 3f;
+        float timerMax = 8f;
+
+        //suggested merge by brandon ty
+        //refactored 2/10/24 after school
+
+        switch(PlayerPrefs.GetString("Mode"))
+        {
+            case "Hard":
+            {
+                    timerMin = 3f;
+                    timerMax = 6f;
+                    heightOfst = 2f;
+                    pipeType = pipeHard;
+                break;
+            }
+            case "Speed":
+            {
+                    timerMin = 2f;
+                    timerMax = 5f;
+                    heightOfst = 1.6f;
+                    pipeType = pipe;
+                break;
+            }
+            case "Default":
+            {
+                    timerMin = 4f;
+                    timerMax = 7f;
+                    heightOfst = 1.6f;
+                    pipeType = pipe;
+                break;
+            }
+        }
+                
         float lowestPart = transform.position.y - heightOfst;
         float highestPart = transform.position.y + heightOfst;
-
-        if(PlayerPrefs.GetString("Mode") == "Hard")
-        {
-            heightOfst = 2f;
-            Instantiate(pipeHard, new Vector3(transform.position.x, Random.Range(lowestPart, highestPart), 0), transform.rotation);
-        }
-        if(PlayerPrefs.GetString("Mode") == "Speed")
-        {
-            heightOfst = 1.6f;
-            Instantiate(pipe, new Vector3(transform.position.x, Random.Range(lowestPart, highestPart), 0), transform.rotation);
-        }
-        //you can add other difficulties inbetween here
-        if(PlayerPrefs.GetString("Mode") == "Default")
-        {
-            heightOfst = 1.6f;
-            Instantiate(pipe, new Vector3(transform.position.x, Random.Range(lowestPart, highestPart), 0), transform.rotation);
-        }
-
+        Instantiate(pipeType, new Vector3(transform.position.x, Random.Range(lowestPart, highestPart), 0), transform.rotation);
+        spawnTime = Random.Range(timerMin, timerMax);
         //then make it
         
-    }
-    public IEnumerator RandomizeTime()
-    {
-        if(PlayerPrefs.GetString("Mode") == "Default")
-        {
-            spawnTime = Random.Range(4, 8);
-        }
-        if(PlayerPrefs.GetString("Mode") == "Hard")
-        {
-            spawnTime = Random.Range(3, 6);
-        }
-        if(PlayerPrefs.GetString("Mode") == "Speed")
-        {
-            spawnTime = Random.Range(2, 5);
-        }
-        yield return new WaitForSeconds(spawnTime);
     }
         
 }

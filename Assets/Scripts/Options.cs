@@ -209,6 +209,7 @@ public class Options : MonoBehaviour
             PlayerPrefs.SetInt("trophy1active", 0);
             PlayerPrefs.SetInt("trophy2active", 0);
             PlayerPrefs.SetInt("trophy3active", 0);
+            PlayerPrefs.SetString("Mode", "Default");
     }
     public void DeleteAll()
     {
