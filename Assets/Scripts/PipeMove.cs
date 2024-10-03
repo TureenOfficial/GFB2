@@ -22,30 +22,29 @@ public class PipeMove : MonoBehaviour
     }
     public void Start()
     {
-        float msFloat = 0f;
         //refactored 2/10/24 GOING TO SCHOOL
+        //furthur refactor 3/10/24 unneeded variable
         if(SceneManager.GetActiveScene().name != "MainMenu")
         {
             switch(PlayerPrefs.GetString("Mode"))
             {
                 case "Hard":
-                    msFloat = 2.5f;
+                    moveSpeed = 2.5f;
                      break;
 
                 case "Speed":
-                    msFloat = 7.7f;
+                    moveSpeed = 7.7f;
                      break;
 
                 case "Default":
-                    msFloat = 4f;
+                    moveSpeed = 4f;
                      break;
             }
         }
         else
         {
-            msFloat = 4f;
+            moveSpeed = 4f;
         }
-        moveSpeed = msFloat;
             
     }
 }
