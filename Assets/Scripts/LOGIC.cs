@@ -32,9 +32,6 @@ public class LOGIC : MonoBehaviour, ISingleton
     public void Update()
     {
         text.text = totalflarps.ToString();
-        highscoretext.text = "HIGHSCORE: " + PlayerPrefs.GetInt("Highscore").ToString();
-        xpText.text = "XP EARNED: " + xpGrant.xpgranted.ToString();
-        
         if(totalflarps > PlayerPrefs.GetInt("Highscore", 0))
         {
             text.color = Color.yellow; 
@@ -67,6 +64,8 @@ public class LOGIC : MonoBehaviour, ISingleton
     {
         StartCoroutine(SlowAudio());
 
+        highscoretext.text = "HIGHSCORE: " + PlayerPrefs.GetInt("Highscore").ToString();
+        xpText.text = "XP EARNED: " + xpGrant.xpgranted.ToString();
         finaltext.text = "SCORE: " + totalflarps;
     }
     IEnumerator SlowAudio()
