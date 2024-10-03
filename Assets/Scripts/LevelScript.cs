@@ -32,12 +32,13 @@ public class LevelScript : MonoBehaviour
     public void Start()
     {
         ReturnFromSys();
+        LoadLevel();
     }
     public void Save()
     {
         PlayerPrefs.SetInt("level", level);   
     }
-    public void Update()
+    public void LoadLevel()
     {
         xp = PlayerPrefs.GetInt("xp");
         
