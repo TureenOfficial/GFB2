@@ -32,10 +32,6 @@ public class LOGIC : MonoBehaviour, ISingleton
     public void Update()
     {
         text.text = totalflarps.ToString();
-<<<<<<< Updated upstream
-=======
-        
->>>>>>> Stashed changes
         if(totalflarps > PlayerPrefs.GetInt("Highscore", 0))
         {
             text.color = Color.yellow; 
