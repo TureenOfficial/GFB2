@@ -2857,7 +2857,7 @@ MonoBehaviour:
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: Flarp Birb Name
+  m_Text: Birb
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
@@ -9434,6 +9434,8 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Theme Song - Salmon Remix
       m_Image: {fileID: 0}
+    - m_Text: Theme Song - Bratnam Remix
+      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -9929,7 +9931,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Flarp Birb Name\u200B"
+  m_text: "Birb\u200B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 54fa1c7acf14a1e47944e7975846111f, type: 2}
   m_sharedMaterial: {fileID: 404275957301557455, guid: 54fa1c7acf14a1e47944e7975846111f, type: 2}
@@ -10117,8 +10119,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -70, y: 50}
-  m_SizeDelta: {x: 84.3096, y: 40}
+  m_AnchoredPosition: {x: -75.4, y: 50}
+  m_SizeDelta: {x: 92.155, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2088408807
 MonoBehaviour:
@@ -10140,7 +10142,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: NAME
+  m_text: 'NAME:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 857525986e91cea4db8b0a80cf341410, type: 2}
   m_sharedMaterial: {fileID: -1815794621384289291, guid: 857525986e91cea4db8b0a80cf341410, type: 2}

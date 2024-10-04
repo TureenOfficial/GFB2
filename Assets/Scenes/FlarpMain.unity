@@ -2130,7 +2130,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 755185748}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 6, z: 0}
+  m_LocalPosition: {x: 0, y: 7, z: 0}
   m_LocalScale: {x: 23.7134, y: -0.80622995, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2307,7 +2307,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 230}
+  m_AnchoredPosition: {x: 0, y: 220}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &911454802
@@ -3992,6 +3992,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7e1ad2d40197ddd4d96c728543f17154, type: 3}
   - {fileID: 8300000, guid: 392c9622ff6acf7468173dc78dada2bd, type: 3}
   - {fileID: 8300000, guid: 13dd884a136606a42beddbb92eaa84a5, type: 3}
+  - {fileID: 8300000, guid: 4e8b6c2dd5659514eaf42186b79829f1, type: 3}
   fs: {fileID: 562947365}
   skipButton: {fileID: 664572360}
 --- !u!4 &1400105185

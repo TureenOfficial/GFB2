@@ -32,6 +32,10 @@ public class LOGIC : MonoBehaviour, ISingleton
     public void Update()
     {
         text.text = totalflarps.ToString();
+<<<<<<< Updated upstream
+=======
+        
+>>>>>>> Stashed changes
         if(totalflarps > PlayerPrefs.GetInt("Highscore", 0))
         {
             text.color = Color.yellow; 
@@ -64,6 +68,11 @@ public class LOGIC : MonoBehaviour, ISingleton
     {
         StartCoroutine(SlowAudio());
 
+        // FIND OUT HOW TO IMPLEMENT 
+        //PlayerPrefs.SetInt("alltimeflarps", totalflarps + PlayerPrefs.GetInt("alltimeflarps"));
+        //causes weird bugs like massive numbers (500 ish) after 2 plays PLEASE SORT TOMOZ
+
+        
         highscoretext.text = "HIGHSCORE: " + PlayerPrefs.GetInt("Highscore").ToString();
         xpText.text = "XP EARNED: " + xpGrant.xpgranted.ToString();
         finaltext.text = "SCORE: " + totalflarps;
