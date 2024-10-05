@@ -114,6 +114,7 @@ public class FlarpScript : MonoBehaviour, ISingleton
 
     public void FlarpDie()
     {
+            PlayerPrefs.SetInt("alltimeflarps", PlayerPrefs.GetInt("alltimeflarps") + LOGICscript.totalflarps);
             PlayerPrefs.SetInt("timesdead", PlayerPrefs.GetInt("timesdead") + 1);
             timesPlayedDeadSound ++;
             rb.freezeRotation = false;

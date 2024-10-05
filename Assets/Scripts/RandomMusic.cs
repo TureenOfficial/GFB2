@@ -42,6 +42,8 @@ public class RandomMusic : MonoBehaviour
         {
             aud.clip = audioClips[currentCN];
         }
+
+
         aud.Play();
     }
 

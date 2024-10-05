@@ -15,6 +15,7 @@ public class Options : MonoBehaviour
     public int currentCN;
     public GameObject eyelashBIRB;
     public TMP_InputField field;
+    public TMP_Dropdown fpsDrop;
     public string flarpname;
     public TMP_Dropdown resdropdown;
     public UnityEngine.UI.Slider slide;
@@ -52,7 +53,6 @@ public class Options : MonoBehaviour
     public void Update()
     {
         crown.SetActive(crownactivebool);
-        Application.targetFrameRate = hz;
         audVelocity = slide.value;
         highscoreText.text = "HIGHSCORE: " + PlayerPrefs.GetInt("Highscore").ToString();
         customcolorval = rgbslide.value;
@@ -126,6 +126,44 @@ public class Options : MonoBehaviour
             PlayerPrefs.SetInt("crownactive", 0);
         }
     }
+    public void FPSToggle()
+    {
+        int fps = 0;
+        switch(fpsDrop.value)
+        {
+            case 0:
+            {
+                fps = 60;
+                break;
+            }
+            case 1:
+            {
+                fps = 144;
+
+                break;
+            }
+            case 2:
+            {
+                fps = 165;
+
+                break;
+            }
+            case 3:
+            {
+                fps = 240;
+
+                break;
+            }
+            case 4:
+            {
+                fps = -1;
+
+                break;
+            }
+        }
+        PlayerPrefs.SetInt("fps", fpsDrop.value);
+        Application.targetFrameRate = fps;
+    }
     public void CNUpdate()
     {
         currentCN = dropdownCN.value;
@@ -188,10 +226,12 @@ public class Options : MonoBehaviour
             satslide.value = PlayerPrefs.GetFloat("satvalue");
             valslide.value = PlayerPrefs.GetFloat("brightvalue");
             field.text = PlayerPrefs.GetString("flarpname");
+            fpsDrop.value = PlayerPrefs.GetInt("fps");
             //rgbhandle.color = Color.HSVToRGB(rgbslide.value, 1, 1);
     }   
     public void Defaults()
     {
+            PlayerPrefs.SetInt("fps", 4);
             PlayerPrefs.SetInt("Highscore", 0);
             PlayerPrefs.SetFloat("audioLevel", 0.70f);
             PlayerPrefs.SetInt("crownactive", 0);
@@ -237,7 +277,7 @@ public class Options : MonoBehaviour
     }
     public void CheckForData()
     {
-        if(PlayerPrefs.GetInt("alltimeflarps") == 0 && PlayerPrefs.GetFloat("audioLevel") == 0.70f && PlayerPrefs.GetInt("currentCN") == 0 && PlayerPrefs.GetInt("FlarpC") == 1 && PlayerPrefs.GetInt("Highscore") == 0 && PlayerPrefs.GetInt("level") == 0 && PlayerPrefs.GetString("flarpname") == "Birb" && PlayerPrefs.GetInt("trophy1active") == 0 && PlayerPrefs.GetInt("trophy2active") == 0 && PlayerPrefs.GetInt("trophy3active") == 0)
+        if(PlayerPrefs.GetInt("fps") == 4 && PlayerPrefs.GetInt("alltimeflarps") == 0 && PlayerPrefs.GetFloat("audioLevel") == 0.70f && PlayerPrefs.GetInt("currentCN") == 0 && PlayerPrefs.GetInt("FlarpC") == 1 && PlayerPrefs.GetInt("Highscore") == 0 && PlayerPrefs.GetInt("level") == 0 && PlayerPrefs.GetString("flarpname") == "Birb" && PlayerPrefs.GetInt("trophy1active") == 0 && PlayerPrefs.GetInt("trophy2active") == 0 && PlayerPrefs.GetInt("trophy3active") == 0)
         {
             ays.SetActive(false);
             ddflt.SetActive(true);

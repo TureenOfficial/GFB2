@@ -19,7 +19,8 @@ public class LevelScript : MonoBehaviour
         PlayerPrefs.SetInt("xp", 0);
         level ++;
         PlayerPrefs.SetInt("level", level);
-
+        LoadLevel();
+        //YOU NEED LOADLEVEL() I TRIED TO REMOVE IT AND I HAD LIKE -2000 XP TO NEXT LEVEL
     }
     public void ViewLevelSystem()
     {
@@ -47,7 +48,7 @@ public class LevelScript : MonoBehaviour
 
         if(level == 0)
         {
-            xpToNext = 200 * 1 - PlayerPrefs.GetInt("xp");
+            xpToNext = 200 - PlayerPrefs.GetInt("xp");
         }
         else
         {

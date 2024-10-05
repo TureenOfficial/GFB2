@@ -64,10 +64,6 @@ public class LOGIC : MonoBehaviour, ISingleton
     {
         StartCoroutine(SlowAudio());
 
-        // FIND OUT HOW TO IMPLEMENT 
-        //PlayerPrefs.SetInt("alltimeflarps", totalflarps + PlayerPrefs.GetInt("alltimeflarps"));
-        //causes weird bugs like massive numbers (500 ish) after 2 plays PLEASE SORT TOMOZ
-
         
         highscoretext.text = "HIGHSCORE: " + PlayerPrefs.GetInt("Highscore").ToString();
         xpText.text = "XP EARNED: " + xpGrant.xpgranted.ToString();
