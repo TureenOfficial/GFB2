@@ -10,6 +10,7 @@ public class RandomMusic : MonoBehaviour
     public int currentCN;
     public AudioClip[] audioClips;
     public FlarpScript fs;
+    public NowPlaying np;
 
     public Button skipButton;
 
@@ -32,8 +33,9 @@ public class RandomMusic : MonoBehaviour
     }
     public void NewMusic()
     {
+    //    PlayerPrefs.SetString("currentsong", audioClips[currentCN].);
         currentCN = PlayerPrefs.GetInt("currentCN");
-
+        np.DisplayNewMusic();
         if(PlayerPrefs.GetInt("currentCN") == 0)
         {
             aud.clip = audioClips[Random.Range(1, audioClips.Length)];
@@ -42,7 +44,7 @@ public class RandomMusic : MonoBehaviour
         {
             aud.clip = audioClips[currentCN];
         }
-
+    
 
         aud.Play();
     }

@@ -8,6 +8,7 @@ public class FlarpScript : MonoBehaviour, ISingleton
     public static FlarpScript Instance { get; private set; }
     public Rigidbody2D rb;
     public GameObject lashgo;
+    public Jumpscare JumpscareScript;
     public int lashenabled;
     public GameObject crown;
     public Color color;
@@ -114,6 +115,8 @@ public class FlarpScript : MonoBehaviour, ISingleton
 
     public void FlarpDie()
     {
+            canvasDIE.SetActive(true);
+            JumpscareScript.JumpscareDeath();
             PlayerPrefs.SetInt("alltimeflarps", PlayerPrefs.GetInt("alltimeflarps") + LOGICscript.totalflarps);
             PlayerPrefs.SetInt("timesdead", PlayerPrefs.GetInt("timesdead") + 1);
             timesPlayedDeadSound ++;
@@ -168,7 +171,6 @@ public class FlarpScript : MonoBehaviour, ISingleton
             
         flarpAlive = false;
         canvasDef.SetActive(false);
-        canvasDIE.SetActive(true);
         Destroy(cl);
     }
 
