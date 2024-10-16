@@ -34,5 +34,6 @@ Customisable character with either different presets or custom HEX color codes, 
 
 Animations made with ASESPRITE and the Unity Animation Editor
 
-> Secr
+> Secrets
+
 Lots, of secrets
