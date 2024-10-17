@@ -4,43 +4,17 @@ using UnityEngine;
 
 public class ModeManager : MonoBehaviour
 {
-    public bool hardmodeactive;
-    public bool normactive;
-    public bool speedactive;
+    //this script was heavily overcomplicated
     public void HardActivate()
     {
-        hardmodeactive = true;
-        speedactive = false;
-        normactive = false;
-        Check();
+        PlayerPrefs.SetString("Mode", "Hard");
     }
     public void DefActivate()
     {
-        hardmodeactive = false;
-        normactive = true;
-        speedactive = false;
-        Check();
+        PlayerPrefs.SetString("Mode", "Default");
     }
     public void SpeedActivate()
     {
-        speedactive = true;
-        normactive = false;
-        hardmodeactive = false;
-        Check();
-    }
-    public void Check()
-    {
-        if(hardmodeactive == true)
-        {
-            PlayerPrefs.SetString("Mode", "Hard");
-        }
-        if(normactive == true)
-        {
-            PlayerPrefs.SetString("Mode", "Default");
-        }
-        if(speedactive == true)
-        {
-            PlayerPrefs.SetString("Mode", "Speed");
-        }
+        PlayerPrefs.SetString("Mode", "Speed");
     }
 }

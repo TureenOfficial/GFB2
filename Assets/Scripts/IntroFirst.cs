@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class IntroFirst : MonoBehaviour
-{
+{   
     public float alpha;
     public SpriteRenderer spriterend;
 

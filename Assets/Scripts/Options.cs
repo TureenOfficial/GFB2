@@ -63,7 +63,6 @@ public class Options : MonoBehaviour
         huetext.text = "HUE (" + Math.Round(customcolorval, 3).ToString() + ")";
         sattext.text = "SAT (" + Math.Round(satslide.value, 3).ToString() + ")";
         valtext.text = "VAL (" + Math.Round(valslide.value, 3).ToString() + ")";
-        
 
         if(PlayerPrefs.GetInt("FlarpC") == 5)
         {
@@ -207,6 +206,7 @@ public class Options : MonoBehaviour
                 crowntoggle.SetActive(false);
             }
             togcrown.isOn = crownactivebool;
+            toglash.isOn = lashactivebool;
             ChangeEyelashToggle();
             fullscreenint = PlayerPrefs.GetInt("fullscreen");
             if(fullscreenint == 0)
@@ -217,6 +217,16 @@ public class Options : MonoBehaviour
             {
                 fullscreen = false;
             }
+
+            if(PlayerPrefs.GetInt("lashes") == 1)
+            {
+                eyelashBIRB.SetActive(true);
+            }
+            else
+            {
+                eyelashBIRB.SetActive(false);
+            }
+
             slide.value = PlayerPrefs.GetFloat("audioLevel");
             dropdownCN.value = PlayerPrefs.GetInt("currentCN");
             dropdownFC.value = PlayerPrefs.GetInt("FlarpC");

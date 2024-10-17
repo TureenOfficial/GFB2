@@ -13,13 +13,26 @@ public class NowPlaying : MonoBehaviour
 
     void Start()
     {
-        anim = nowplayingtext.GetComponent<Animation>();
-        DisplayNewMusic();
+        DisplayMusicName();
     }
-    public void DisplayNewMusic()
+    public void DisplayMusicName()
     {
-        currentsong = PlayerPrefs.GetString("currentsong");
-        anim.Play("newmusic");
-        musictext.text = "NOW PLAYING: " + currentsong;   
+        musictext.text = "NOW PLAYING: " + PlayerPrefs.GetString("songName");
+        anim = nowplayingtext.GetComponent<Animation>();
+        PlayMusicName();
+    }
+    public void PlayMusicName()
+    {
+        //restarts the animation so if the animation is on the last frame you can actually see the song name lol
+        
+        if(!anim.isPlaying)
+        {
+            anim.Play();
+        }
+        else
+        {
+            anim.Stop();
+            anim.Play();
+        }
     }
 }
