@@ -73,11 +73,11 @@ public class FlarpScript : MonoBehaviour, ISingleton
     {   
         if (PlayerPrefs.GetInt("lashes") == 1 && PlayerPrefs.GetInt("FlarpC") == 5)
         {
-            lashenabled = true;
+            lashenabled = 1;
         }
         else
         {
-            lashenabled = false;
+            lashenabled = 0;
         }
         if (PlayerPrefs.GetInt("crownactive") == 1 && PlayerPrefs.GetInt("crowncanactive") == 1)
         {
