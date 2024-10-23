@@ -30,7 +30,7 @@ Multiple gamemodes to enhance gameplay which change rewards
 
 All time flarps, deaths, and highscore
 
-![STATS](https://cdn.discordapp.com/attachments/999980642546761798/1296516753807118418/image.png?ex=671292d2&is=67114152&hm=659035a62a32c51dc2d2c1b8e1aab328a512a5ca3d539fcffb64549826b274db&)
+![STATS](https://cdn.discordapp.com/attachments/999980642546761798/1296516753807118418/image.png?ex=6719d312&is=67188192&hm=fa865b9f783102b6898ca6a1f171186b870453653d2fbc6ce6d072c42ce8051b&)
 
 > Customisable Character
 
