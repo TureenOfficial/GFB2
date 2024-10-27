@@ -156,7 +156,7 @@ public class FlarpScript : MonoBehaviour, ISingleton
                 PlayerPrefs.SetInt("crowncanactive", 1);
             }
             
-            //trophies
+            //trophies manager on death
 
             if (LOGICscript.totalflarps >= 100 && PlayerPrefs.GetInt("trophy1active") == 0)
             {
