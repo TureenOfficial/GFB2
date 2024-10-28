@@ -19,18 +19,19 @@ public class Jumpscare : MonoBehaviour
     }
     public void JumpscareDeath()
     {
-        if(Random.Range(1, 5476) == 5)
+        if(UnityEngine.Random.Range(1, 5476) == 5)
         {
             canvasdie.SetActive(false);
             jumpscaretype = 1;
             StartCoroutine(DoJumpscare());      
         }
-        else
+        else if(UnityEngine.Random.Range(5477, 9200) == 6666 & System.DateTime.Now.Hour == 3)
         {
-            jumpscaretype = 0;
+            canvasdie.SetActive(false);
+            jumpscaretype = 2;
+            StartCoroutine(DoJumpscare());      
         }
-
-    }
+    }   
 
     public IEnumerator DoJumpscare()
     {       
@@ -46,6 +47,16 @@ public class Jumpscare : MonoBehaviour
                 SceneManager.LoadScene("MainMenu");
                 break;
             }
+            case 2:
+            {
+                theJUMP.SetActive(true);
+                imageren.sprite = spookies[1];
+                yield return new WaitForSeconds(0.4f);
+                theJUMP.SetActive(false);
+                SceneManager.LoadScene("MainMenu");
+                break;
+            }
+
         }
     }
 }

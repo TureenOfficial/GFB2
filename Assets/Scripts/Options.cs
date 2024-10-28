@@ -30,6 +30,7 @@ public class Options : MonoBehaviour
     public RawImage rgbhandle;
     public RawImage sathandle;
     public RawImage valhandle;
+    // TODO public Toggle clouds;
     public Toggle toglash;
     public float customcolorval;
     public TMP_Dropdown dropdownCN;
