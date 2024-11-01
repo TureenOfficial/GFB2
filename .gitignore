@@ -6,6 +6,7 @@
 *.pidb.meta
 *.pidb
 *.pdb
+*.unity
 *.meta
 
 # Unity3D generated file on crash reports
