@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class ButtonScript : MonoBehaviour
 {
     public GameObject SelectCanvas;
+    public string namescene;
     public GameObject MainCanvas;
     public GameObject OpenFlarpCanvas;
     public GameObject CreditCanvas;
@@ -36,6 +37,10 @@ public class ButtonScript : MonoBehaviour
     public void PlayMain()
     {
         SceneManager.LoadScene("FlarpMain");
+    }
+    public void CustomSceneChange()
+    {
+        SceneManager.LoadScene(namescene);
     }
     public void PlaySelect()
     {

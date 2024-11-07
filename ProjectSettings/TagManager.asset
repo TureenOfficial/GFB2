@@ -9,6 +9,9 @@ TagManager:
   - Reward
   - CanvasDie
   - CanvasDefault
+  - Paddle
+  - Barrier
+  - Wall
   layers:
   - Default
   - TransparentFX

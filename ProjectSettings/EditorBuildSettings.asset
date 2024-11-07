@@ -12,9 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/OptionsMenu.unity
     guid: f5914e18e90eb2c46af731f0947f1238
   - enabled: 1
-    path: Assets/Scenes/FlarpMain.unity
+    path: Assets/Scenes/GAMEMODES/DEFAULT/FlarpMain.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/LevelMenu.unity
     guid: ef1ada08ff233b54493d9da04d5fa79e
+  - enabled: 1
+    path: Assets/Scenes/GAMEMODES/OTHER/FlarpPong.unity
+    guid: 789aa1ee88aa4fe4c9045ee1bc9ea544
   m_configObjects: {}
