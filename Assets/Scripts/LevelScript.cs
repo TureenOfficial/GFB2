@@ -14,6 +14,7 @@ public class LevelScript : MonoBehaviour
     public TMP_Text TrueXPText;
     public TMP_Text LevelStage;
     public TMP_Text xpText;
+    private string currentLevelTitle = "LevelTitleDefault_0";
     public void LevelNew()
     {
         PlayerPrefs.SetInt("xp", 0);
@@ -93,43 +94,49 @@ public class LevelScript : MonoBehaviour
         }
 
 
-
         switch(stage)
         {
             case 0:
-            StageText.text = "Stage: " + "Early Birb";
+            currentLevelTitle = "EARLY";
             StageText.color = new Color(0, 0.8f, 0.550f);
             break;
 
             case 1:
-            StageText.text = "Stage: " + "Flarp Birb";
+            currentLevelTitle = "FLARP";
             StageText.color = Color.white;
             break;
 
             case 2:
-            StageText.text = "Stage: " + "Good Flarp Birb";
+            currentLevelTitle = "GOOD FLARP";
             StageText.color = new Color(0.6f, 1f, 0);
             break;
 
             case 3:
-            StageText.text = "Stage: " + "Great Flarp Birb";
+            currentLevelTitle = "GREAT FLARP";
             StageText.color = new Color(0, 1f, 0.750f);
             break;
 
             case 4:
-            StageText.text = "Stage: " + "Greater Flarp Birb";
+            currentLevelTitle = "GREATER FLARP";
             StageText.color = Color.green;
             break;
 
             case 5:
-            StageText.text = "Stage: " + "Ultimate Flarp Birb";
+            currentLevelTitle = "ULTIMATE FLARP";
             StageText.color = new Color (1f, 0, 0.3f);
             break;
             
             case 6:
-            StageText.text = "Stage: " + "Climax Flarp Birb";
+            currentLevelTitle = "CLIMAX FLARP";
             StageText.color = Color.yellow;
             break;
-        }        
+
+            default:
+            currentLevelTitle = "U_S";
+            StageText.color = Color.gray;
+            break;
+        }
+
+        StageText.text = "STAGE: " + currentLevelTitle + " BIRB";        
     }
 }
