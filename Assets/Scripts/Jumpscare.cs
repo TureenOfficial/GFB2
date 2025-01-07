@@ -42,7 +42,7 @@ public class Jumpscare : MonoBehaviour
             {
                 theJUMP.SetActive(true);
                 imageren.sprite = spookies[0];
-                yield return new WaitForSeconds(0.4f);
+                yield return new WaitForSeconds(0.2f);
                 theJUMP.SetActive(false);
                 SceneManager.LoadScene("MainMenu");
                 break;
@@ -51,7 +51,7 @@ public class Jumpscare : MonoBehaviour
             {
                 theJUMP.SetActive(true);
                 imageren.sprite = spookies[1];
-                yield return new WaitForSeconds(0.4f);
+                yield return new WaitForSeconds(0.2f);
                 theJUMP.SetActive(false);
                 SceneManager.LoadScene("MainMenu");
                 break;

@@ -4,17 +4,9 @@ using UnityEngine;
 
 public class ModeManager : MonoBehaviour
 {
-    //this script was heavily overcomplicated
-    public void HardActivate()
+    public string toActivate;
+    public void ToActivate()
     {
-        PlayerPrefs.SetString("Mode", "Hard");
-    }
-    public void DefActivate()
-    {
-        PlayerPrefs.SetString("Mode", "Default");
-    }
-    public void SpeedActivate()
-    {
-        PlayerPrefs.SetString("Mode", "Speed");
+        PlayerPrefs.SetString("Mode", toActivate);
     }
 }

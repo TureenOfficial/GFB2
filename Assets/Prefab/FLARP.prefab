@@ -475,7 +475,7 @@ MonoBehaviour:
   customcolor: {fileID: 5657313415980787056}
   XPScript: {fileID: 0}
   highscore_: 0
-  cl: {fileID: 5657313415845379241}
+  col: {fileID: 5657313415845379241}
   timesPlayedDeadSound: 0
   birbrend: {fileID: 5657313415845379238}
   flarpingShit: 5.6

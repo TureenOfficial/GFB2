@@ -468,3 +468,9 @@ MonoBehaviour:
   pipe: {fileID: 0}
   gamelogic: {fileID: 0}
   fs: {fileID: 0}
+  spriterend: {fileID: 8246822546751552164}
+  spriterend2: {fileID: 8246822546142142150}
+  pipesprites:
+  - {fileID: 21300000, guid: f7c2779c67dedb94b8b6fee0d77bc930, type: 3}
+  - {fileID: 21300000, guid: 29338bb8754d9d84985d1d8270b4be02, type: 3}
+  gamemodetype: 

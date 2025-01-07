@@ -10,6 +10,7 @@ public class ButtonScript : MonoBehaviour
     public GameObject MainCanvas;
     public GameObject OpenFlarpCanvas;
     public GameObject CreditCanvas;
+    public GameObject LoadingCanvas;
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -35,6 +36,12 @@ public class ButtonScript : MonoBehaviour
         CreditCanvas.SetActive(false);
     }
     public void PlayMain()
+    {
+        SelectCanvas.SetActive(false);
+        LoadingCanvas.SetActive(true);
+        Invoke(nameof(LoadScene), 1f);
+    }
+    private void LoadScene()
     {
         SceneManager.LoadScene("FlarpMain");
     }

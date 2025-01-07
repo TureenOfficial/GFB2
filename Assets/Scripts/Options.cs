@@ -9,6 +9,7 @@ public class Options : MonoBehaviour
 {
     //Wow thats  A Lot!  Lot!     Lot!
     public float audVelocity;
+    public UnityEngine.UI.Toggle lyricalcensortoggle;
     public bool fullscreen;
     public int res;
     public int hz;
@@ -22,17 +23,17 @@ public class Options : MonoBehaviour
     public UnityEngine.UI.Slider rgbslide;
     public UnityEngine.UI.Slider satslide;
     public UnityEngine.UI.Slider valslide;
+    public UnityEngine.UI.RawImage huecolorprev;
+    public UnityEngine.UI.RawImage satcolorprev;
+    public UnityEngine.UI.RawImage valcolorprev;
     public GameObject[] colorsliders;
-    public GameObject crown;
-    public Toggle fullscreentog;
-    public Toggle vsync;
+    public UnityEngine.UI.Toggle fullscreentog;
+    public UnityEngine.UI.Toggle vsync;
     public GameObject canvasColorEdit;
     public RawImage rgbhandle;
     public RawImage sathandle;
     public RawImage valhandle;
     // TODO public Toggle clouds;
-    public Toggle toglash;
-    public float customcolorval;
     public TMP_Dropdown dropdownCN;
     public TMP_Dropdown dropdownFC;
     public TMP_Text leveltext;
@@ -43,88 +44,38 @@ public class Options : MonoBehaviour
     public GameObject ays;
     public GameObject ddflt;
     public TMP_Text highscoreText;
-    public bool lashactivebool;
-    public Toggle togcrown;
-    public GameObject crowntoggle;
-    public bool crownactivebool;
     public int FHActive;
     public int fullscreenint;
     //public FlarpHighscore fhs;
 
     public void Update()
     {
-        crown.SetActive(crownactivebool);
         audVelocity = slide.value;
         highscoreText.text = "HIGHSCORE: " + PlayerPrefs.GetInt("Highscore").ToString();
-        customcolorval = rgbslide.value;
-        PlayerPrefs.SetFloat("colorvalue", customcolorval); 
+        PlayerPrefs.SetFloat("colorvalue", rgbslide.value); 
         PlayerPrefs.SetFloat("satvalue", satslide.value);
         PlayerPrefs.SetFloat("brightvalue", valslide.value);
         PlayerPrefs.SetInt("FlarpC", flarpColor);
-        huetext.text = "HUE (" + Math.Round(customcolorval, 3).ToString() + ")";
-        sattext.text = "SAT (" + Math.Round(satslide.value, 3).ToString() + ")";
-        valtext.text = "VAL (" + Math.Round(valslide.value, 3).ToString() + ")";
+        huetext.text = $"HUE ({rgbslide.value:F2})";
+        sattext.text = $"SAT ({satslide.value:F2})";
+        valtext.text = $"VAL ({valslide.value:F2})";
+        
 
-        if(PlayerPrefs.GetInt("FlarpC") == 5)
+        // New color preview feature
+        huecolorprev.color = new Color(rgbslide.value, 1, 1);
+        satcolorprev.color = new Color(1, satslide.value, 1);
+        valcolorprev.color = new Color(1, 1, valslide.value);
+
+        foreach (var slider in colorsliders)
         {
-            foreach(GameObject Object in colorsliders) 
-            {
-                Object.SetActive(true);
-            }
-        }
-        else
-        {   
-            foreach(GameObject Object in colorsliders) 
-            {
-                Object.SetActive(false);
-            }
+            slider.SetActive(flarpColor == 5);
         }
 
-        if(PlayerPrefs.GetInt("crowncanactive") == 1)
-        {
-            crowntoggle.SetActive(true);
-        }
-        else
-        {
-            crowntoggle.SetActive(false);
-        }
-
-    }
-    public void LoadEyelash()
-    {
-        toglash.isOn = lashactivebool;
     }
     public void ChangeName()
     {
         flarpname = field.text;
         PlayerPrefs.SetString("flarpname", flarpname);
-    }
-    public void ChangeEyelashToggle()
-    {
-        if(toglash.isOn && flarpColor == 5)
-        {   
-            PlayerPrefs.SetInt("lashes", 1);
-            eyelashBIRB.SetActive(true);
-            lashactivebool = true;
-        }
-        else
-        {
-            PlayerPrefs.SetInt("lashes", 0);
-            eyelashBIRB.SetActive(false);
-            lashactivebool = false;
-        }
-    }
-    public void CrownToggle()
-    {
-        crownactivebool = togcrown.isOn;
-        if(crownactivebool == true)
-        {
-            PlayerPrefs.SetInt("crownactive", 1);
-        }
-        else
-        {
-            PlayerPrefs.SetInt("crownactive", 0);
-        }
     }
     public void FPSToggle()
     {
@@ -176,11 +127,6 @@ public class Options : MonoBehaviour
     public void FCUpdate()
     {
         flarpColor = dropdownFC.value;
-        if(flarpColor != 5)
-        {
-            lashactivebool = false;
-            eyelashBIRB.SetActive(false);
-        }
     }
     public void SaveJustFlarpC()
     {
@@ -192,42 +138,32 @@ public class Options : MonoBehaviour
         PlayerPrefs.SetFloat("brightvalue", valslide.value);
         PlayerPrefs.SetFloat("colorvalue", rgbslide.value);
     }
+    public void LyricalCensors()
+    {
+        if(lyricalcensortoggle.isOn)
+        {
+            PlayerPrefs.SetInt("OffensiveItems", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("OffensiveItems", 0);
+        }
+    }
     public void Start()
     {
         Load();
     }
     public void Load()
     {
-            if(PlayerPrefs.GetInt("crowncanactive") == 1)
+            if(PlayerPrefs.GetInt("OffensiveItems") == 1)
             {
-                crowntoggle.SetActive(true);
+                lyricalcensortoggle.isOn = true;
             }
             else
             {
-                crowntoggle.SetActive(false);
+                lyricalcensortoggle.isOn = false;
             }
-            togcrown.isOn = crownactivebool;
-            toglash.isOn = lashactivebool;
-            ChangeEyelashToggle();
             fullscreenint = PlayerPrefs.GetInt("fullscreen");
-            if(fullscreenint == 0)
-            {
-                fullscreen = true;
-            }
-            else
-            {
-                fullscreen = false;
-            }
-
-            if(PlayerPrefs.GetInt("lashes") == 1)
-            {
-                eyelashBIRB.SetActive(true);
-            }
-            else
-            {
-                eyelashBIRB.SetActive(false);
-            }
-
             slide.value = PlayerPrefs.GetFloat("audioLevel");
             dropdownCN.value = PlayerPrefs.GetInt("currentCN");
             dropdownFC.value = PlayerPrefs.GetInt("FlarpC");
@@ -242,19 +178,17 @@ public class Options : MonoBehaviour
     }   
     public void Defaults()
     {
+            PlayerPrefs.SetInt("OffensiveItems", 0);
             PlayerPrefs.SetInt("fps", 4);
             PlayerPrefs.SetInt("Highscore", 0);
             PlayerPrefs.SetFloat("audioLevel", 0.70f);
-            PlayerPrefs.SetInt("crownactive", 0);
-            PlayerPrefs.SetInt("crowncanactive", 0);
             PlayerPrefs.SetInt("currentCN", 0);
             PlayerPrefs.SetInt("FlarpC", 1);
             PlayerPrefs.SetInt("level", 0);
-            PlayerPrefs.SetFloat("satvalue", 1);
-            PlayerPrefs.SetFloat("colorvalue", 0);
+            PlayerPrefs.SetFloat("satvalue", 0.800f);
+            PlayerPrefs.SetFloat("colorvalue", 0.450f);
             PlayerPrefs.SetFloat("brightvalue", 1);
             PlayerPrefs.SetInt("lashes", 0);
-            PlayerPrefs.SetInt("crownactive", 0);
             PlayerPrefs.SetString("flarpname", "Birb");
             PlayerPrefs.SetInt("timesdead", 0);
             PlayerPrefs.SetInt("trophy1active", 0);

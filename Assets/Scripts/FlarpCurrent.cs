@@ -33,7 +33,7 @@ public class FlarpCurrent : MonoBehaviour
             bgenabled = false;
         }
 
-        if(PlayerPrefs.GetInt("lashes") == 1 && birbType == 5)
+        if(PlayerPrefs.GetInt("lashes") == 1 && birbType == 6)
         {
             lashes.SetActive(true);
         }

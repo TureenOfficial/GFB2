@@ -64,33 +64,17 @@ public class LevelScript : MonoBehaviour
         xpText.text = "XP TO NEXT LEVEL: " + xpToNext;
         LevelStage.text = "LEVEL: " + PlayerPrefs.GetInt("level");
         
-        if(level <= 0)
+        if (level <= 0)
         {
             stage = 0;
-        }
-        if(level >= 1 && level < 10)
+        } 
+        else 
         {
-            stage = 1;
-        }
-        if(level >= 10 && level < 20)
-        {
-            stage = 2;
-        }
-        if(level >= 20 && level < 30)
-        {
-            stage = 3;
-        }
-        if(level >= 30 && level < 40)
-        {
-            stage = 4;
-        }
-        if(level >= 40 && level < 50)
-        {
-            stage = 5;
-        }
-        if(level >= 50)
-        {
-            stage = 6;
+            stage = (level - 1) / 10 + 1;
+            if (stage > 6) 
+            {
+                stage = 6;
+            }
         }
 
 
@@ -127,12 +111,12 @@ public class LevelScript : MonoBehaviour
             break;
             
             case 6:
-            currentLevelTitle = "CLIMAX FLARP";
+            currentLevelTitle = "CLIMACTIC FLARP";
             StageText.color = Color.yellow;
             break;
 
             default:
-            currentLevelTitle = "U_S";
+            currentLevelTitle = "Unknown";
             StageText.color = Color.gray;
             break;
         }

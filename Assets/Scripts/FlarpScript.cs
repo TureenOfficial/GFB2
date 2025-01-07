@@ -10,16 +10,13 @@ public class FlarpScript : MonoBehaviour, ISingleton
     public GameObject lashgo;
     public Jumpscare JumpscareScript;
     public int lashenabled;
-    public GameObject crown;
     public Color color;
     public float colort;
-    public SpriteRenderer customcrown;
-    public Sprite[] crownsprites;
     public SpriteRenderer customcolor;
     public XPGrant XPScript;
     public int highscore_;
-    public Collider2D cl;
-    //public Light lg;          THIS WAS ORIGINALLY GUNNA BE A FEATURE WHERE FLARP WOULD GLOW DEPENDING HOW GOOD YOUR SCORE WAS
+    public Collider2D col;
+    //public Light lg;
     public int timesPlayedDeadSound;
     public SpriteRenderer birbrend;
     public float flarpingShit;
@@ -40,8 +37,6 @@ public class FlarpScript : MonoBehaviour, ISingleton
     public TMP_Text highscoreText;
     public void Update()
     {
-        //colort(PlayerPrefs.GetString("")) ;
-
         if(flarpAlive && pbs.JohnRoute == true)
         {
             if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
@@ -71,22 +66,6 @@ public class FlarpScript : MonoBehaviour, ISingleton
     }
     public void Start()
     {   
-        if (PlayerPrefs.GetInt("lashes") == 1 && PlayerPrefs.GetInt("FlarpC") == 5)
-        {
-            lashenabled = 1;
-        }
-        else
-        {
-            lashenabled = 0;
-        }
-        if (PlayerPrefs.GetInt("crownactive") == 1 && PlayerPrefs.GetInt("crowncanactive") == 1)
-        {
-            crown.SetActive(true);
-        }
-        else
-        {
-            crown.SetActive(false);
-        }
         
         XPScript = GameObject.FindGameObjectWithTag("Logic").GetComponent<XPGrant>(); 
         flarpAlive = true;
@@ -109,19 +88,12 @@ public class FlarpScript : MonoBehaviour, ISingleton
             customcolor.color = Color.HSVToRGB(PlayerPrefs.GetFloat("colorvalue"), PlayerPrefs.GetFloat("satvalue"), PlayerPrefs.GetFloat("brightvalue"));
         }
 
-        if(lashenabled == 1)
-        {
-            lashgo.SetActive(true);
-        }
-        else
-        {
-            lashgo.SetActive(false);
-        }
-
     }
 
     public void FlarpDie()
     {
+            Destroy(col);
+            flarpAlive = false;
             canvasDIE.SetActive(true);
             JumpscareScript.JumpscareDeath();
             PlayerPrefs.SetInt("alltimeflarps", PlayerPrefs.GetInt("alltimeflarps") + LOGICscript.totalflarps);
@@ -133,16 +105,17 @@ public class FlarpScript : MonoBehaviour, ISingleton
             rb.MoveRotation(200);
             highscoreText.text = "HIGHSCORE: " + PlayerPrefs.GetInt("Highscore", 0).ToString();
             XPScript.GrantXP();
-        
+    
             if(timesPlayedDeadSound !> 1)
             {
                 if(Random.Range(1, 1000) == 500)
-                {aud.PlayOneShot(specdead);}
-
+                {
+                    aud.PlayOneShot(specdead);
+                }
                 else
-                {aud.PlayOneShot(dead);}
-
-               
+                {
+                    aud.PlayOneShot(dead);
+                }
             }
 
             if (LOGICscript.totalflarps > PlayerPrefs.GetInt("Highscore", 0))
@@ -150,36 +123,47 @@ public class FlarpScript : MonoBehaviour, ISingleton
                 PlayerPrefs.SetInt("Highscore", LOGICscript.totalflarps);
                 highscore_ = PlayerPrefs.GetInt("Highscore");
             }
-            if (LOGICscript.totalflarps >= 100 && PlayerPrefs.GetInt("crownactive") == 0 && PlayerPrefs.GetInt("crowncanactive") == 0)
-            {
-                PlayerPrefs.SetInt("crownactive", 1);
-                PlayerPrefs.SetInt("crowncanactive", 1);
-            }
-            
             //trophies manager on death
-
-            if (LOGICscript.totalflarps >= 100 && PlayerPrefs.GetInt("trophy1active") == 0)
+            int totalflarps = LOGICscript.totalflarps;
+            string trophytype;
+            switch(totalflarps)
             {
-                PlayerPrefs.SetInt("trophy1active", 1);
-                PlayerPrefs.SetInt("notifnew", 1);
-            }
-            if (LOGICscript.totalflarps >= 500 && PlayerPrefs.GetInt("trophy2active") == 0)
-            {
-                PlayerPrefs.SetInt("trophy2active", 1);
-                PlayerPrefs.SetInt("notifnew", 1);
-            }
-            if (LOGICscript.totalflarps >= 1000 && PlayerPrefs.GetInt("trophy3active") == 0)
-            {
-                PlayerPrefs.SetInt("trophy3active", 1);
-                PlayerPrefs.SetInt("notifnew", 1);
-            }
+                    case int t when t >= 1000:
+                        if (PlayerPrefs.GetInt("trophy3active") == 0)
+                        {
+                            trophytype = "trophy3";
+                            NewFlarpTrophy(trophytype);
+                            PlayerPrefs.SetInt("trophy2active", 1);
+                            PlayerPrefs.SetInt("trophy1active", 1);
+                        }
+                        break;
 
+                    case int t when t >= 500:
+                        if (PlayerPrefs.GetInt("trophy2active") == 0)
+                        {
+                            trophytype = "trophy2";
+                            NewFlarpTrophy(trophytype);
+                            PlayerPrefs.SetInt("trophy1active", 1);
+                        }
+                        break;
 
-            
-        flarpAlive = false;
+                    case int t when t >= 100:
+                        if (PlayerPrefs.GetInt("trophy1active") == 0)
+                        {
+                            trophytype = "trophy1";
+                            NewFlarpTrophy(trophytype);
+                        }
+                        break;
+
+                    default:
+                    //no unlock
+                        break;
+            }
         canvasDef.SetActive(false);
-        Destroy(cl);
     }
-
-
+    private void NewFlarpTrophy(string trophytype)
+    {
+        PlayerPrefs.SetInt(trophytype + "active", 1);
+        PlayerPrefs.SetInt("notifnew", 1);
+    }
 }
