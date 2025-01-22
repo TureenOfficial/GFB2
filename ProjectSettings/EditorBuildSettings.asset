@@ -17,7 +17,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GAMEMODES/DEFAULT/FlarpMain.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
-    path: Assets/Scenes/SCRAPPED/FlarpPong.unity
-    guid: 789aa1ee88aa4fe4c9045ee1bc9ea544
   m_configObjects: {}

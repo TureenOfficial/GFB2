@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class NowPlaying : MonoBehaviour
 {
+    
     public TMP_Text musictext;
     public string currentsong;
     public Animation anim;
     public GameObject nowplayingtext;
     public AudioSource aud;
 
-    void Start()
+    public void FlarpEntireStart()
     {
+        this.gameObject.SetActive(true);
         DisplayMusicName();
     }
     public void DisplayMusicName()

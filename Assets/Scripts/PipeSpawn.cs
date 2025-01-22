@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -10,27 +6,36 @@ public class PipeSpawn : MonoBehaviour
     public GameObject pipe;
     public GameObject pipeHard;
     public float spawnTime;
+    public bool isPipesActive;
     private float _Timer;
     public float heightOfst;
     public GameObject pipeType;
 
     void Start()
     {
+        _Timer = 1;
+        isPipesActive = false;
+    }   
+    public void FlarpEntireStart()
+    {
         SpawnPipe();
+        isPipesActive = true;
     }
 
     void Update()
     {
-        if(_Timer < spawnTime)
+        if(isPipesActive)
         {
-            _Timer += Time.deltaTime;
-        }
-        else
-        {
-            SpawnPipe();
-            _Timer = 0;
-        }
-        
+            if(_Timer < spawnTime)
+            {
+                _Timer += Time.deltaTime;
+            }
+            else
+            {
+                SpawnPipe();
+               _Timer = 0;
+            }
+        }        
     }
     void SpawnPipe()
     {

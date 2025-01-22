@@ -9,7 +9,6 @@ public class LOGIC : MonoBehaviour, ISingleton
 {
     public static LOGIC Instance { get; private set; }
     public int totalflarps;
-    public HighscoreYay highscoreScript;
     public TMP_Text text;
     public TMP_Text highscoretext;
     public AudioClip winsound;
@@ -20,8 +19,10 @@ public class LOGIC : MonoBehaviour, ISingleton
     public AudioSource audiomain;
     public AudioClip pointgained;
     public TMP_Text xpText;
+    public Animation animationPointGained;
     public GameObject highscorelight;
     public XPGrant xpGrant;
+    public AnimationClip[] AnimationTypePointGained;
     
     public void Start()
     {
@@ -52,7 +53,16 @@ public class LOGIC : MonoBehaviour, ISingleton
     {
         totalflarps += 1;
         aud.PlayOneShot(pointgained, 1.6f);
-
+        if(totalflarps > PlayerPrefs.GetInt("Highscore"))
+        {
+            animationPointGained.clip = AnimationTypePointGained[1];
+            animationPointGained.Play();
+        }
+        else
+        {
+            animationPointGained.clip = AnimationTypePointGained[0];
+            animationPointGained.Play();
+        }
     }
     public void AddCollectable()
     {
@@ -63,7 +73,6 @@ public class LOGIC : MonoBehaviour, ISingleton
     public void FinalScore()
     {
         StartCoroutine(SlowAudio());
-
         
         highscoretext.text = "HIGHSCORE: " + PlayerPrefs.GetInt("Highscore").ToString();
         xpText.text = "XP EARNED: " + xpGrant.xpgranted.ToString();

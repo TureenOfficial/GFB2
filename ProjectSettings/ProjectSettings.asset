@@ -40,11 +40,11 @@ PlayerSettings:
     width: 1
     height: 1
   m_SplashScreenLogos:
-  - logo: {fileID: 10404, guid: 0000000000000000e000000000000000, type: 0}
-    duration: 2
   - logo: {fileID: 21300000, guid: dd5984a6e5c6bf942850e862a2a87c8d, type: 3}
     duration: 2
-  - logo: {fileID: 21300000, guid: ac6bab38705be4942b5b5e7d72abbe93, type: 3}
+  - logo: {fileID: 21300000, guid: d1f83ef6f4b826e4b9472266f885c93c, type: 3}
+    duration: 2
+  - logo: {fileID: 10404, guid: 0000000000000000e000000000000000, type: 0}
     duration: 2
   m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
@@ -140,7 +140,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.9
+  bundleVersion: 1.0
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -279,7 +279,7 @@ PlayerSettings:
   - m_BuildTarget: Standalone
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: b2dea771f49ae924cb0651d56d3b4a57, type: 3}
+      m_Icon: {fileID: 2800000, guid: d1f83ef6f4b826e4b9472266f885c93c, type: 3}
       m_Width: 1024
       m_Height: 1024
       m_Kind: 0
@@ -294,7 +294,7 @@ PlayerSettings:
       m_Height: 256
       m_Kind: 0
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: b2dea771f49ae924cb0651d56d3b4a57, type: 3}
+      m_Icon: {fileID: 2800000, guid: d1f83ef6f4b826e4b9472266f885c93c, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
@@ -309,19 +309,19 @@ PlayerSettings:
       m_Height: 48
       m_Kind: 0
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: b2dea771f49ae924cb0651d56d3b4a57, type: 3}
+      m_Icon: {fileID: 2800000, guid: d1f83ef6f4b826e4b9472266f885c93c, type: 3}
       m_Width: 32
       m_Height: 32
       m_Kind: 0
     - serializedVersion: 2
-      m_Icon: {fileID: 0}
+      m_Icon: {fileID: 2800000, guid: b2dea771f49ae924cb0651d56d3b4a57, type: 3}
       m_Width: 16
       m_Height: 16
       m_Kind: 0
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: b2dea771f49ae924cb0651d56d3b4a57, type: 3}
+      m_Icon: {fileID: 2800000, guid: d1f83ef6f4b826e4b9472266f885c93c, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0

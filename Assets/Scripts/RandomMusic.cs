@@ -12,10 +12,13 @@ public class RandomMusic : MonoBehaviour
     public FlarpScript fs;
     public NowPlaying np;
     public Button skipButton;
-    private void Start()
+    public void Start()
     {
         InitializeAudioSettings();
         UpdateSkipButtonInteractable();
+    }
+    public void FlarpEntireStart()
+    {
         NewMusic();
     }
     private void InitializeAudioSettings()
@@ -29,8 +32,8 @@ public class RandomMusic : MonoBehaviour
     }
     public void Skip()
     {
-        aud.Pause();
         NewMusic();
+        aud.Pause();
     }
     public void NewMusic()
     {

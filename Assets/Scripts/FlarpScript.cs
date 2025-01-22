@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Networking.Types;
 
 public class FlarpScript : MonoBehaviour, ISingleton
 {
@@ -33,6 +34,7 @@ public class FlarpScript : MonoBehaviour, ISingleton
     public AudioClip specdead;
     public LOGIC LOGICscript;
     public int flapsound;
+    public GameObject flarpBirbEyelash;
     public pauseButton pbs;
     public TMP_Text highscoreText;
     public void Update()
@@ -49,7 +51,6 @@ public class FlarpScript : MonoBehaviour, ISingleton
                 rb.velocity = Vector2.up * flarpingShit;
                 FlarpSound();
             }
-            
         }
     }
     public void OnTriggerEnter2D(Collider2D collider)
@@ -64,30 +65,59 @@ public class FlarpScript : MonoBehaviour, ISingleton
         flapsound = Random.Range(1, 4);
         aud.PlayOneShot(flap[flapsound]);  
     }
+    public void UpdateAudioVolume()
+    {
+        aud.volume = PlayerPrefs.GetFloat("audioLevel");
+    }
     public void Start()
+    {
+        rb.gravityScale = 0f;
+
+        // sprite/color manager
+        int flarpC_local = PlayerPrefs.GetInt("FlarpC");
+        bool flarpBGactive;
+        switch(flarpC_local)
+        {
+            case 5:
+            {
+                customcolor.color = Color.HSVToRGB(PlayerPrefs.GetFloat("colorvalue"), PlayerPrefs.GetFloat("satvalue"), PlayerPrefs.GetFloat("brightvalue"));
+                birbrend.sprite = birb[5];
+                flarpBGactive = true;
+                if(PlayerPrefs.GetInt("lashes") == 1)
+                {
+                    flarpBirbEyelash.SetActive(true);
+                }
+                else
+                {
+                    flarpBirbEyelash.SetActive(false);
+                }
+                break;
+            }
+            case 0:
+            { 
+                birbrend.sprite = birb[Random.Range(1, 4)];
+                flarpBGactive = false;
+                break;
+            }
+            default:
+            {
+                birbrend.sprite = birb[PlayerPrefs.GetInt("FlarpC")];
+                flarpBGactive = false;
+                break;
+            }   
+        }
+        if(flarpC_local != 5)
+        {
+            flarpBirbEyelash.SetActive(false);
+        }
+        flarpBG.SetActive(flarpBGactive);
+    }
+    public void FlarpEntireStart()
     {   
-        
+        rb.gravityScale = 1f;
         XPScript = GameObject.FindGameObjectWithTag("Logic").GetComponent<XPGrant>(); 
         flarpAlive = true;
         timesPlayedDeadSound = 0;
-        
-
-        if(PlayerPrefs.GetInt("FlarpC") == 0)
-        {
-            birbrend.sprite = birb[Random.Range(1, 4)];
-            flarpBG.SetActive(false);
-        }
-        else
-        {
-            birbrend.sprite = birb[PlayerPrefs.GetInt("FlarpC")];
-            flarpBG.SetActive(false);
-        }
-        if(PlayerPrefs.GetInt("FlarpC") == 5)
-        {
-            flarpBG.SetActive(true);
-            customcolor.color = Color.HSVToRGB(PlayerPrefs.GetFloat("colorvalue"), PlayerPrefs.GetFloat("satvalue"), PlayerPrefs.GetFloat("brightvalue"));
-        }
-
     }
 
     public void FlarpDie()
@@ -100,8 +130,8 @@ public class FlarpScript : MonoBehaviour, ISingleton
             PlayerPrefs.SetInt("timesdead", PlayerPrefs.GetInt("timesdead") + 1);
             timesPlayedDeadSound ++;
             rb.freezeRotation = false;
-            rb.velocity = (Vector2.right * 2);
-            rb.velocity = (Vector2.up * 4.3f);
+            rb.velocity = Vector2.right * 2;
+            rb.velocity = Vector2.up * 4.3f;
             rb.MoveRotation(200);
             highscoreText.text = "HIGHSCORE: " + PlayerPrefs.GetInt("Highscore", 0).ToString();
             XPScript.GrantXP();
@@ -114,6 +144,22 @@ public class FlarpScript : MonoBehaviour, ISingleton
                 }
                 else
                 {
+                    if(PlayerPrefs.GetInt("level") == 0)
+                    {
+                        aud.pitch = 1.04f;
+                    }
+                    if(PlayerPrefs.GetInt("level") == 1)
+                    {
+                        aud.pitch = 1;
+                    }
+                    if(PlayerPrefs.GetInt("level") > 1)
+                    {
+                        aud.pitch = 1 - PlayerPrefs.GetInt("level") * 0.01f; 
+                    }
+                    if(PlayerPrefs.GetInt("level") >= 50)
+                    {
+                        aud.pitch = 0.5f;
+                    }
                     aud.PlayOneShot(dead);
                 }
             }
@@ -123,6 +169,7 @@ public class FlarpScript : MonoBehaviour, ISingleton
                 PlayerPrefs.SetInt("Highscore", LOGICscript.totalflarps);
                 highscore_ = PlayerPrefs.GetInt("Highscore");
             }
+
             //trophies manager on death
             int totalflarps = LOGICscript.totalflarps;
             string trophytype;
@@ -133,7 +180,7 @@ public class FlarpScript : MonoBehaviour, ISingleton
                         {
                             trophytype = "trophy3";
                             NewFlarpTrophy(trophytype);
-                            PlayerPrefs.SetInt("trophy2active", 1);
+                            PlayerPrefs.SetInt("trophy2active", 1);  //these have to be here so that the other trophies also unlock
                             PlayerPrefs.SetInt("trophy1active", 1);
                         }
                         break;
@@ -156,8 +203,8 @@ public class FlarpScript : MonoBehaviour, ISingleton
                         break;
 
                     default:
-                    //no unlock
-                        break;
+                    //no unlock cuz what
+                    break;
             }
         canvasDef.SetActive(false);
     }

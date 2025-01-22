@@ -1,0 +1,10 @@
+IDEA DOCUMENT - GFB2
+
+//// QOL FEATURES - FEATURES ////
+· OST LINK (v1.1) - (Low Priority)
+· == NEW MENU THEME - (v1.0) - (High Priority) == DONE
+· == COUNTDOWN (v1.0) - (High Priority) == DONE
+· FLARP COLOR DESIGNER RGB INPUT FIELD (v1.1) - (High Priority)
+
+//// GAMEMODES ////
+· 

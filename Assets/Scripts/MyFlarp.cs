@@ -13,7 +13,14 @@ public class MyFlarp : MonoBehaviour
 
     void Start()
     {
-        totflarps.text = "TOTAL FLARPS: " + PlayerPrefs.GetInt("alltimeflarps").ToString();
+        if(PlayerPrefs.GetInt("alltimeflarps") >= 10000)
+        {
+            totflarps.text = "TOTAL FLARPS: " + "10K+";
+        }
+        else
+        {
+            totflarps.text = "TOTAL FLARPS: " + PlayerPrefs.GetInt("alltimeflarps").ToString();
+        }
         tdtext.text = "TIMES DIED: " + PlayerPrefs.GetInt("timesdead").ToString();
         highscoretext.text = "HIGHSCORE: " + PlayerPrefs.GetInt("Highscore").ToString();
         leveltext.text = "LEVEL: " + PlayerPrefs.GetInt("level").ToString();

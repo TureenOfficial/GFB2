@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using JetBrains.Annotations;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -28,6 +29,7 @@ public class Options : MonoBehaviour
     public UnityEngine.UI.RawImage valcolorprev;
     public GameObject[] colorsliders;
     public UnityEngine.UI.Toggle fullscreentog;
+    public UnityEngine.UI.Toggle eyelashToggle;
     public UnityEngine.UI.Toggle vsync;
     public GameObject canvasColorEdit;
     public RawImage rgbhandle;
@@ -39,10 +41,13 @@ public class Options : MonoBehaviour
     public TMP_Text leveltext;
     public int flarpColor;
     public TMP_Text huetext;
+    private int lashesAreOn;
     public TMP_Text sattext;
     public TMP_Text valtext;
     public GameObject ays;
     public GameObject ddflt;
+    public Color _Color;
+    public UnityEngine.UI.RawImage flarpbirbdesignerHeader;
     public TMP_Text highscoreText;
     public int FHActive;
     public int fullscreenint;
@@ -51,7 +56,14 @@ public class Options : MonoBehaviour
     public void Update()
     {
         audVelocity = slide.value;
-        highscoreText.text = "HIGHSCORE: " + PlayerPrefs.GetInt("Highscore").ToString();
+        if(PlayerPrefs.GetInt("Highscore") >= 1000)
+        {
+            highscoreText.text = "HIGHSCORE: \n" + PlayerPrefs.GetInt("Highscore").ToString();
+        }
+        else
+        {
+            highscoreText.text = "HIGHSCORE: " + PlayerPrefs.GetInt("Highscore").ToString();
+        }
         PlayerPrefs.SetFloat("colorvalue", rgbslide.value); 
         PlayerPrefs.SetFloat("satvalue", satslide.value);
         PlayerPrefs.SetFloat("brightvalue", valslide.value);
@@ -59,8 +71,23 @@ public class Options : MonoBehaviour
         huetext.text = $"HUE ({rgbslide.value:F2})";
         sattext.text = $"SAT ({satslide.value:F2})";
         valtext.text = $"VAL ({valslide.value:F2})";
-        
 
+        
+        _Color = Color.HSVToRGB(
+            PlayerPrefs.GetFloat("colorvalue"),
+            PlayerPrefs.GetFloat("satvalue"),
+            PlayerPrefs.GetFloat("brightvalue")
+        );
+
+        if(PlayerPrefs.GetInt("FlarpC") == 5)
+        {
+            flarpbirbdesignerHeader.color = _Color;
+        }
+        else
+        {
+            flarpbirbdesignerHeader.color = new Color(1, 0, 0.35f);
+        }
+        
         // New color preview feature
         huecolorprev.color = new Color(rgbslide.value, 1, 1);
         satcolorprev.color = new Color(1, satslide.value, 1);
@@ -149,12 +176,28 @@ public class Options : MonoBehaviour
             PlayerPrefs.SetInt("OffensiveItems", 0);
         }
     }
+    public void EyelashToggle()
+    {
+        if(eyelashToggle.isOn)
+        {
+            PlayerPrefs.SetInt("lashes", 1);
+            lashesAreOn = 1;
+        }
+        else
+        {
+            PlayerPrefs.SetInt("lashes", 0);
+            lashesAreOn = 0;
+        }
+        eyelashBIRB.SetActive(eyelashToggle.isOn);
+        
+    }
     public void Start()
     {
         Load();
     }
     public void Load()
     {
+            lashesAreOn = Convert.ToInt32(eyelashToggle.isOn);
             if(PlayerPrefs.GetInt("OffensiveItems") == 1)
             {
                 lyricalcensortoggle.isOn = true;
@@ -162,6 +205,14 @@ public class Options : MonoBehaviour
             else
             {
                 lyricalcensortoggle.isOn = false;
+            }
+            if(PlayerPrefs.GetInt("lashes") == 1)
+            {
+                eyelashToggle.isOn = true;
+            }
+            else
+            {
+                eyelashToggle.isOn = false;
             }
             fullscreenint = PlayerPrefs.GetInt("fullscreen");
             slide.value = PlayerPrefs.GetFloat("audioLevel");
@@ -196,6 +247,7 @@ public class Options : MonoBehaviour
             PlayerPrefs.SetInt("trophy3active", 0);
             PlayerPrefs.SetString("Mode", "Default");
             PlayerPrefs.SetInt("alltimeflarps", 0);
+            PlayerPrefs.SetInt("lashes", 0);
     }
     public void DeleteAll()
     {
@@ -210,6 +262,7 @@ public class Options : MonoBehaviour
         PlayerPrefs.SetFloat("satvalue", satslide.value);
         PlayerPrefs.SetFloat("brightvalue", valslide.value);
         PlayerPrefs.SetFloat("colorvalue", rgbslide.value);
+        PlayerPrefs.SetInt("lashes", lashesAreOn);
     }
     
     public void AreYouSureMenu()
@@ -222,7 +275,7 @@ public class Options : MonoBehaviour
     }
     public void CheckForData()
     {
-        if(PlayerPrefs.GetInt("fps") == 4 && PlayerPrefs.GetInt("alltimeflarps") == 0 && PlayerPrefs.GetFloat("audioLevel") == 0.70f && PlayerPrefs.GetInt("currentCN") == 0 && PlayerPrefs.GetInt("FlarpC") == 1 && PlayerPrefs.GetInt("Highscore") == 0 && PlayerPrefs.GetInt("level") == 0 && PlayerPrefs.GetString("flarpname") == "Birb" && PlayerPrefs.GetInt("trophy1active") == 0 && PlayerPrefs.GetInt("trophy2active") == 0 && PlayerPrefs.GetInt("trophy3active") == 0)
+        if(PlayerPrefs.GetInt("lashes") == 0 && PlayerPrefs.GetInt("fps") == 4 && PlayerPrefs.GetInt("alltimeflarps") == 0 && PlayerPrefs.GetFloat("audioLevel") == 0.70f && PlayerPrefs.GetInt("currentCN") == 0 && PlayerPrefs.GetInt("FlarpC") == 1 && PlayerPrefs.GetInt("Highscore") == 0 && PlayerPrefs.GetInt("level") == 0 && PlayerPrefs.GetString("flarpname") == "Birb" && PlayerPrefs.GetInt("trophy1active") == 0 && PlayerPrefs.GetInt("trophy2active") == 0 && PlayerPrefs.GetInt("trophy3active") == 0)
         {
             ays.SetActive(false);
             ddflt.SetActive(true);

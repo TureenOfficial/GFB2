@@ -12,7 +12,7 @@ public class Collectable : MonoBehaviour
     public void Update()
     {
         moveSpeed = PipeMove.Instance.moveSpeed;
-        transform.position = transform.position + (Vector3.left * moveSpeed) * Time.deltaTime;
+        transform.position = transform.position + Vector3.left * moveSpeed * Time.deltaTime;
 
         if(transform.position.x < PipeMove.Instance.killpipes)
         {
