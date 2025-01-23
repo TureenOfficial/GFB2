@@ -15,6 +15,7 @@ public class Countdown : MonoBehaviour
     public GameObject flarpBirb;
     public RandomMusic randomMusicScript;
     public NowPlaying np;
+    public FireballHardMode fbhm;
     public AudioSource aud;
     void Start()
     {
@@ -49,6 +50,7 @@ public class Countdown : MonoBehaviour
         fs.FlarpEntireStart();
         pipe.FlarpEntireStart();
         np.FlarpEntireStart();
+        fbhm.FlarpEntireStart();
         randomMusicScript.FlarpEntireStart();
         this.gameObject.SetActive(false);
     }

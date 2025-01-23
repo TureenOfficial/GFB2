@@ -12,6 +12,9 @@ TagManager:
   - Paddle
   - Barrier
   - Wall
+  - Fireball
+  - Fall
+  - LowAirDensity
   layers:
   - Default
   - TransparentFX

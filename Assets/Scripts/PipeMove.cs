@@ -7,7 +7,7 @@ public class PipeMove : MonoBehaviour
 {
     public static PipeMove Instance { get; private set; }
     public float moveSpeed;
-    public float killpipes = -45;
+    public float killpipes = -15;
 
     public void Update()
     {

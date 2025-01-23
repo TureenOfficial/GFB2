@@ -31,7 +31,7 @@ public class RandomImageMenu : MonoBehaviour
             }
             case 4:
             {
-                creditTextString = "Mackas";
+                creditTextString = "Mackas & Tureen";
                 break;
             }
             default:

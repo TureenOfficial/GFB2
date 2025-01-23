@@ -1,4 +1,5 @@
 using System.Collections;
+using JetBrains.Annotations;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class FlarpScript : MonoBehaviour, ISingleton
 {
     public static FlarpScript Instance { get; private set; }
     public Rigidbody2D rb;
+    public TMP_Text diedToText;
     public GameObject lashgo;
     public Jumpscare JumpscareScript;
     public int lashenabled;
@@ -18,7 +20,6 @@ public class FlarpScript : MonoBehaviour, ISingleton
     public int highscore_;
     public Collider2D col;
     //public Light lg;
-    public int timesPlayedDeadSound;
     public SpriteRenderer birbrend;
     public float flarpingShit;
     public GameObject flarp;
@@ -28,9 +29,11 @@ public class FlarpScript : MonoBehaviour, ISingleton
     public bool flarpAlive;
     public int RandomType;
     public AudioSource aud;
+    public string whatKilled;
     public AudioClip[] flap;
     public Sprite[] birb;
     public AudioClip dead;
+    public AudioClip longass_scream;
     public AudioClip specdead;
     public LOGIC LOGICscript;
     public int flapsound;
@@ -57,6 +60,22 @@ public class FlarpScript : MonoBehaviour, ISingleton
     {
         if(collider.CompareTag("Pipe"))
         {
+            whatKilled = "Pipe";
+            FlarpDie();
+        }
+        if(collider.CompareTag("Fireball"))
+        {
+            whatKilled = "Fireball";
+            FlarpDie();
+        }
+        if(collider.CompareTag("Fall"))
+        {
+            whatKilled = "Fall";
+            FlarpDie();
+        }
+        if(collider.CompareTag("LowAirDensity"))
+        {
+            whatKilled = "Lower Air Density";
             FlarpDie();
         }
     }
@@ -117,7 +136,6 @@ public class FlarpScript : MonoBehaviour, ISingleton
         rb.gravityScale = 1f;
         XPScript = GameObject.FindGameObjectWithTag("Logic").GetComponent<XPGrant>(); 
         flarpAlive = true;
-        timesPlayedDeadSound = 0;
     }
 
     public void FlarpDie()
@@ -128,42 +146,55 @@ public class FlarpScript : MonoBehaviour, ISingleton
             JumpscareScript.JumpscareDeath();
             PlayerPrefs.SetInt("alltimeflarps", PlayerPrefs.GetInt("alltimeflarps") + LOGICscript.totalflarps);
             PlayerPrefs.SetInt("timesdead", PlayerPrefs.GetInt("timesdead") + 1);
-            timesPlayedDeadSound ++;
             rb.freezeRotation = false;
             rb.velocity = Vector2.right * 2;
             rb.velocity = Vector2.up * 4.3f;
             rb.MoveRotation(200);
             highscoreText.text = "HIGHSCORE: " + PlayerPrefs.GetInt("Highscore", 0).ToString();
             XPScript.GrantXP();
-    
-            if(timesPlayedDeadSound !> 1)
-            {
-                if(Random.Range(1, 1000) == 500)
-                {
-                    aud.PlayOneShot(specdead);
-                }
-                else
-                {
-                    if(PlayerPrefs.GetInt("level") == 0)
-                    {
-                        aud.pitch = 1.04f;
-                    }
-                    if(PlayerPrefs.GetInt("level") == 1)
-                    {
-                        aud.pitch = 1;
-                    }
-                    if(PlayerPrefs.GetInt("level") > 1)
-                    {
-                        aud.pitch = 1 - PlayerPrefs.GetInt("level") * 0.01f; 
-                    }
-                    if(PlayerPrefs.GetInt("level") >= 50)
-                    {
-                        aud.pitch = 0.5f;
-                    }
-                    aud.PlayOneShot(dead);
-                }
-            }
 
+
+            diedToText.text = $"(TO A {whatKilled.ToUpper()})"; 
+                    if(Random.Range(1, 1000) == 500)
+                    {
+                        aud.PlayOneShot(specdead);
+                    }
+                    else
+                    {
+                            switch(PlayerPrefs.GetInt("level"))
+                            {
+                                case 0:
+                                {
+                                    aud.pitch = 1.04f;
+                                    break;
+                                }
+                                case 1:
+                                {
+                                    aud.pitch = 1f;
+                                    break;
+                                }
+                                case int n when n > 1:
+                                {
+                                    aud.pitch = 1 - PlayerPrefs.GetInt("level") * 0.01f; 
+                                    break;
+                                }
+                                case int n when n >= 50:
+                                {
+                                    aud.pitch = 0.5f;
+                                    break;
+                                }
+                            }
+
+                        if(whatKilled == "Fireball")
+                        {
+                            aud.PlayOneShot(longass_scream);
+                        }
+                        else
+                        {
+                            aud.PlayOneShot(dead);
+                        }
+                
+                    }
             if (LOGICscript.totalflarps > PlayerPrefs.GetInt("Highscore", 0))
             {
                 PlayerPrefs.SetInt("Highscore", LOGICscript.totalflarps);

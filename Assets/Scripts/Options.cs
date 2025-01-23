@@ -116,23 +116,29 @@ public class Options : MonoBehaviour
             }
             case 1:
             {
-                fps = 144;
+                fps = 100;
 
                 break;
             }
             case 2:
             {
-                fps = 165;
+                fps = 144;
 
                 break;
             }
             case 3:
             {
-                fps = 240;
+                fps = 165;
 
                 break;
             }
             case 4:
+            {
+                fps = 240;
+
+                break;
+            }
+            case 5:
             {
                 fps = -1;
 
@@ -230,7 +236,7 @@ public class Options : MonoBehaviour
     public void Defaults()
     {
             PlayerPrefs.SetInt("OffensiveItems", 0);
-            PlayerPrefs.SetInt("fps", 4);
+            PlayerPrefs.SetInt("fps", 5);
             PlayerPrefs.SetInt("Highscore", 0);
             PlayerPrefs.SetFloat("audioLevel", 0.70f);
             PlayerPrefs.SetInt("currentCN", 0);
@@ -275,7 +281,7 @@ public class Options : MonoBehaviour
     }
     public void CheckForData()
     {
-        if(PlayerPrefs.GetInt("lashes") == 0 && PlayerPrefs.GetInt("fps") == 4 && PlayerPrefs.GetInt("alltimeflarps") == 0 && PlayerPrefs.GetFloat("audioLevel") == 0.70f && PlayerPrefs.GetInt("currentCN") == 0 && PlayerPrefs.GetInt("FlarpC") == 1 && PlayerPrefs.GetInt("Highscore") == 0 && PlayerPrefs.GetInt("level") == 0 && PlayerPrefs.GetString("flarpname") == "Birb" && PlayerPrefs.GetInt("trophy1active") == 0 && PlayerPrefs.GetInt("trophy2active") == 0 && PlayerPrefs.GetInt("trophy3active") == 0)
+        if(PlayerPrefs.GetInt("lashes") == 0 && PlayerPrefs.GetInt("fps") == 5 && PlayerPrefs.GetInt("alltimeflarps") == 0 && PlayerPrefs.GetFloat("audioLevel") == 0.70f && PlayerPrefs.GetInt("currentCN") == 0 && PlayerPrefs.GetInt("FlarpC") == 1 && PlayerPrefs.GetInt("Highscore") == 0 && PlayerPrefs.GetInt("level") == 0 && PlayerPrefs.GetString("flarpname") == "Birb" && PlayerPrefs.GetInt("trophy1active") == 0 && PlayerPrefs.GetInt("trophy2active") == 0 && PlayerPrefs.GetInt("trophy3active") == 0)
         {
             ays.SetActive(false);
             ddflt.SetActive(true);
