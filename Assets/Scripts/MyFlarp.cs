@@ -21,6 +21,7 @@ public class MyFlarp : MonoBehaviour
         {
             totflarps.text = "TOTAL FLARPS: " + PlayerPrefs.GetInt("alltimeflarps").ToString();
         }
+
         tdtext.text = "TIMES DIED: " + PlayerPrefs.GetInt("timesdead").ToString();
         highscoretext.text = "HIGHSCORE: " + PlayerPrefs.GetInt("Highscore").ToString();
         leveltext.text = "LEVEL: " + PlayerPrefs.GetInt("level").ToString();

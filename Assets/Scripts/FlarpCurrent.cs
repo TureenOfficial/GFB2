@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -46,15 +44,6 @@ public class FlarpCurrent : MonoBehaviour
         else
         {
             lashes.SetActive(false);
-        }
-
-        if(PlayerPrefs.GetInt("crownactive") == 1)
-        {
-            crown.SetActive(true);
-        }
-        else
-        {
-            crown.SetActive(false);
         }
 
     }

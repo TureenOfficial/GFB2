@@ -14,6 +14,7 @@ public class LevelScript : MonoBehaviour
     public TMP_Text TrueXPText;
     public TMP_Text LevelStage;
     public TMP_Text xpText;
+    public UnityEngine.UI.Slider percentageLevel;
     private string currentLevelTitle = "LevelTitleDefault_0";
     public void LevelNew()
     {
@@ -46,14 +47,13 @@ public class LevelScript : MonoBehaviour
         
         level = PlayerPrefs.GetInt("level");
 
-
         if(level == 0)
         {
-            xpToNext = 200 - PlayerPrefs.GetInt("xp");
+            xpToNext = 200 - xp;
         }
         else
         {
-            xpToNext = 200 * PlayerPrefs.GetInt("level") - PlayerPrefs.GetInt("xp");
+            xpToNext = 200 * level - xp;
         }
         if(xpToNext <= 0)
         {
@@ -63,7 +63,9 @@ public class LevelScript : MonoBehaviour
         TrueXPText.text = "CURRENT XP: " + PlayerPrefs.GetInt("xp");
         xpText.text = "XP TO NEXT LEVEL: " + xpToNext;
         LevelStage.text = "LEVEL: " + PlayerPrefs.GetInt("level");
-        
+        float percentage = (xp / (200f * level)) * 100;
+        percentageLevel.value = percentage;         
+
         if (level <= 0)
         {
             stage = 0;

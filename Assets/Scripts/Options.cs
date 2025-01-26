@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
-using JetBrains.Annotations;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +7,9 @@ public class Options : MonoBehaviour
 {
     //Wow thats  A Lot!  Lot!     Lot!
     public float audVelocity;
+    public GameObject headwearDropdown;
     public UnityEngine.UI.Toggle lyricalcensortoggle;
+    public UnityEngine.UI.Toggle cloudToggle;
     public bool fullscreen;
     public int res;
     public int hz;
@@ -46,6 +45,7 @@ public class Options : MonoBehaviour
     public TMP_Text valtext;
     public GameObject ays;
     public GameObject ddflt;
+    public TMP_Text flarpDesignerText;
     public Color _Color;
     public UnityEngine.UI.RawImage flarpbirbdesignerHeader;
     public TMP_Text highscoreText;
@@ -56,9 +56,9 @@ public class Options : MonoBehaviour
     public void Update()
     {
         audVelocity = slide.value;
-        if(PlayerPrefs.GetInt("Highscore") >= 1000)
+        if(PlayerPrefs.GetInt("Highscore") >= 10000)
         {
-            highscoreText.text = "HIGHSCORE: \n" + PlayerPrefs.GetInt("Highscore").ToString();
+            highscoreText.text = "HIGHSCORE: " + "10K+";
         }
         else
         {
@@ -81,10 +81,20 @@ public class Options : MonoBehaviour
 
         if(PlayerPrefs.GetInt("FlarpC") == 5)
         {
+            headwearDropdown.transform.localPosition = new Vector3 (197, -100, 0);
             flarpbirbdesignerHeader.color = _Color;
+            if(_Color == Color.HSVToRGB(_Color.r, 0f, 1f))
+            {
+                flarpDesignerText.color = Color.black;
+            }
+            else
+            {
+                flarpDesignerText.color = Color.white;
+            }
         }
         else
         {
+            headwearDropdown.transform.localPosition = new Vector3(197, 0, 0);
             flarpbirbdesignerHeader.color = new Color(1, 0, 0.35f);
         }
         
@@ -102,7 +112,14 @@ public class Options : MonoBehaviour
     public void ChangeName()
     {
         flarpname = field.text;
-        PlayerPrefs.SetString("flarpname", flarpname);
+        if(flarpname == "")
+        {
+            PlayerPrefs.SetString("flarpname", "Birb");  //ensures no blank name
+        }
+        else
+        {
+            PlayerPrefs.SetString("flarpname", flarpname);
+        }
     }
     public void FPSToggle()
     {
@@ -182,6 +199,17 @@ public class Options : MonoBehaviour
             PlayerPrefs.SetInt("OffensiveItems", 0);
         }
     }
+    public void CloudToggle()
+    {
+        if(cloudToggle.isOn)
+        {
+            PlayerPrefs.SetInt("cloudsActive", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("cloudsActive", 0);
+        }
+    }
     public void EyelashToggle()
     {
         if(eyelashToggle.isOn)
@@ -203,6 +231,7 @@ public class Options : MonoBehaviour
     }
     public void Load()
     {
+            // START TOGGLES
             lashesAreOn = Convert.ToInt32(eyelashToggle.isOn);
             if(PlayerPrefs.GetInt("OffensiveItems") == 1)
             {
@@ -212,6 +241,16 @@ public class Options : MonoBehaviour
             {
                 lyricalcensortoggle.isOn = false;
             }
+
+            if(PlayerPrefs.GetInt("cloudsActive") == 1)
+            {
+                cloudToggle.isOn = true;
+            }
+            else
+            {
+                cloudToggle.isOn = false;
+            }
+
             if(PlayerPrefs.GetInt("lashes") == 1)
             {
                 eyelashToggle.isOn = true;
@@ -220,6 +259,8 @@ public class Options : MonoBehaviour
             {
                 eyelashToggle.isOn = false;
             }
+            // END TOGGLES
+
             fullscreenint = PlayerPrefs.GetInt("fullscreen");
             slide.value = PlayerPrefs.GetFloat("audioLevel");
             dropdownCN.value = PlayerPrefs.GetInt("currentCN");
@@ -234,7 +275,8 @@ public class Options : MonoBehaviour
             //rgbhandle.color = Color.HSVToRGB(rgbslide.value, 1, 1);
     }   
     public void Defaults()
-    {
+    {   
+            PlayerPrefs.SetInt("cloudsActive", 1);
             PlayerPrefs.SetInt("OffensiveItems", 0);
             PlayerPrefs.SetInt("fps", 5);
             PlayerPrefs.SetInt("Highscore", 0);
@@ -253,7 +295,7 @@ public class Options : MonoBehaviour
             PlayerPrefs.SetInt("trophy3active", 0);
             PlayerPrefs.SetString("Mode", "Default");
             PlayerPrefs.SetInt("alltimeflarps", 0);
-            PlayerPrefs.SetInt("lashes", 0);
+            PlayerPrefs.SetString("headwear", "None");
     }
     public void DeleteAll()
     {
@@ -280,8 +322,26 @@ public class Options : MonoBehaviour
         FullReturn();
     }
     public void CheckForData()
-    {
-        if(PlayerPrefs.GetInt("lashes") == 0 && PlayerPrefs.GetInt("fps") == 5 && PlayerPrefs.GetInt("alltimeflarps") == 0 && PlayerPrefs.GetFloat("audioLevel") == 0.70f && PlayerPrefs.GetInt("currentCN") == 0 && PlayerPrefs.GetInt("FlarpC") == 1 && PlayerPrefs.GetInt("Highscore") == 0 && PlayerPrefs.GetInt("level") == 0 && PlayerPrefs.GetString("flarpname") == "Birb" && PlayerPrefs.GetInt("trophy1active") == 0 && PlayerPrefs.GetInt("trophy2active") == 0 && PlayerPrefs.GetInt("trophy3active") == 0)
+    {   
+    
+        //subject for readability
+        bool isDefaultState = 
+        PlayerPrefs.GetInt("cloudsActive") == 1 &&
+        PlayerPrefs.GetInt("lashes") == 0 &&
+        PlayerPrefs.GetInt("fps") == 5 &&
+        PlayerPrefs.GetInt("alltimeflarps") == 0 &&
+        PlayerPrefs.GetFloat("audioLevel") == 0.70f &&
+        PlayerPrefs.GetInt("currentCN") == 0 &&
+        PlayerPrefs.GetInt("FlarpC") == 1 &&
+        PlayerPrefs.GetInt("Highscore") == 0 &&
+        PlayerPrefs.GetInt("level") == 0 &&
+        PlayerPrefs.GetString("flarpname") == "Birb" &&
+        PlayerPrefs.GetString("headwear") == "None" &&
+        PlayerPrefs.GetInt("trophy1active") == 0 &&
+        PlayerPrefs.GetInt("trophy2active") == 0 &&
+        PlayerPrefs.GetInt("trophy3active") == 0;
+
+        if(isDefaultState)
         {
             ays.SetActive(false);
             ddflt.SetActive(true);

@@ -1,10 +1,6 @@
-using System.Collections;
-using JetBrains.Annotations;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Networking.Types;
-
 public class FlarpScript : MonoBehaviour, ISingleton
 {
     public static FlarpScript Instance { get; private set; }
@@ -57,23 +53,24 @@ public class FlarpScript : MonoBehaviour, ISingleton
         }
     }
     public void OnTriggerEnter2D(Collider2D collider)
-    {
+    {   
+        // MOST TO LEAST COMMON
         if(collider.CompareTag("Pipe"))
         {
             whatKilled = "Pipe";
             FlarpDie();
         }
-        if(collider.CompareTag("Fireball"))
+        else if(collider.CompareTag("Fireball"))
         {
             whatKilled = "Fireball";
             FlarpDie();
         }
-        if(collider.CompareTag("Fall"))
+        else if(collider.CompareTag("Fall"))
         {
             whatKilled = "Fall";
             FlarpDie();
         }
-        if(collider.CompareTag("LowAirDensity"))
+        else if(collider.CompareTag("LowAirDensity"))
         {
             whatKilled = "Lower Air Density";
             FlarpDie();
@@ -93,6 +90,10 @@ public class FlarpScript : MonoBehaviour, ISingleton
         rb.gravityScale = 0f;
 
         // sprite/color manager
+
+
+
+
         int flarpC_local = PlayerPrefs.GetInt("FlarpC");
         bool flarpBGactive;
         switch(flarpC_local)
@@ -185,7 +186,7 @@ public class FlarpScript : MonoBehaviour, ISingleton
                                 }
                             }
 
-                        if(whatKilled == "Fireball")
+                        if(whatKilled == "Fireball" | whatKilled == "Fall")
                         {
                             aud.PlayOneShot(longass_scream);
                         }
@@ -241,6 +242,7 @@ public class FlarpScript : MonoBehaviour, ISingleton
     }
     private void NewFlarpTrophy(string trophytype)
     {
+        PlayerPrefs.SetInt("crowncanactive", 1);
         PlayerPrefs.SetInt(trophytype + "active", 1);
         PlayerPrefs.SetInt("notifnew", 1);
     }

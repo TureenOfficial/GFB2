@@ -18,13 +18,13 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 0.06
+    value: 1.85
   threshold:
     overrideState: 1
     value: 1.06
   softKnee:
     overrideState: 1
-    value: 0.304
+    value: 0.114
   clamp:
     overrideState: 0
     value: 65471.11
@@ -74,13 +74,13 @@ MonoBehaviour:
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.358
+    value: 0.415
   smoothness:
     overrideState: 1
-    value: 0.33
+    value: 0.488
   roundness:
     overrideState: 1
-    value: 1
+    value: 0.978
   rounded:
     overrideState: 0
     value: 0

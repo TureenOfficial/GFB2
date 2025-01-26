@@ -5,7 +5,6 @@ using UnityEngine;
 public class FireballHardMode : MonoBehaviour
 {
     public GameObject fireballPrefab;
-    private float fbSpeed;
     public float _Timer;
     public bool fireballsActive;
     public void FlarpEntireStart()
