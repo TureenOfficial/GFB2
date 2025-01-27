@@ -6,17 +6,23 @@ using UnityEngine;
 public class HeadwearScript : MonoBehaviour
 {
     List<string> dropdownCrownOption = new List<string> {"Crown"};
-    //List<string> dropdownDefaultOptions = new List<string> {"Stetson", "Hippie Hat"};
+    List<string> dropdownDefaultOptions = new List<string> {"Stetson", "Hippie Hat"};
     public TMPro.TMP_Dropdown headwearDropdown;
     public int flarpHeadwearLocal;
 
     public void DeleteData()
     {
-        if(PlayerPrefs.GetInt("crowncanactive") == 1)
+        for (int i = headwearDropdown.options.Count - 1; i >= 0; i--)
         {
-            int crownIndex = 1; //CHANGE IF LOCATION OF CROWN INDEX CHANGES
-            headwearDropdown.options.RemoveAt(crownIndex);
+            switch (headwearDropdown.options[i].text)
+            {
+                case "Crown": //deletes any option with "crown"
+                    headwearDropdown.options.RemoveAt(i);
+                    break;
+            }
         }
+
+
         Load();
     }
     public void Load()
@@ -28,9 +34,19 @@ public class HeadwearScript : MonoBehaviour
                 flarpHeadwearLocal = 0;
                 break;
             }
-            case "Crown":
+            case "Stetson":
             {
                 flarpHeadwearLocal = 1;
+                break;
+            }
+            case "Hippie Hat":
+            {
+                flarpHeadwearLocal = 2;
+                break;
+            }
+            case "Crown":
+            {
+                flarpHeadwearLocal = 3;
                 break;
             }
 
@@ -47,15 +63,14 @@ public class HeadwearScript : MonoBehaviour
     public void ChangeHeadwear()
     {
         PlayerPrefs.SetString("headwear", headwearDropdown.options[headwearDropdown.value].text);
-        print(PlayerPrefs.GetString("headwear"));
     }
     public void AddOption()
     {
-        //headwearDropdown.AddOptions(dropdownDefaultOptions);
+        headwearDropdown.AddOptions(dropdownDefaultOptions); //first to get added {1, 2}
 
         if (PlayerPrefs.GetInt("crowncanactive") == 1)
         {
-            headwearDropdown.AddOptions(dropdownCrownOption);
+            headwearDropdown.AddOptions(dropdownCrownOption); //last to get added {last option}
         }
     }
 }

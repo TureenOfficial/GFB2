@@ -27,9 +27,19 @@ public class FlarpHeadwear : MonoBehaviour
                 flarpHeadwearLocal = 0;
                 break;
             }
-            case "Crown":
+            case "Stetson":
             {
                 flarpHeadwearLocal = 1;
+                break;
+            }
+            case "Hippie Hat":
+            {
+                flarpHeadwearLocal = 2;
+                break;
+            }
+            case "Crown":
+            {
+                flarpHeadwearLocal = 3;
                 break;
             }
         }

@@ -12,6 +12,7 @@ public class RandomMusic : MonoBehaviour
     public FlarpScript fs;
     public NowPlaying np;
     public Button skipButton;
+    public songLength songLengthScript;
     public void Start()
     {
         InitializeAudioSettings();
@@ -44,6 +45,7 @@ public class RandomMusic : MonoBehaviour
         np.DisplayMusicName();
 
         aud.Play();
+        songLengthScript.NewAudio();
     }
     private AudioClip GetSelectedClip()
     {

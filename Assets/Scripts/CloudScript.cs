@@ -8,7 +8,8 @@ public class CloudScript : MonoBehaviour
     public Sprite[] cloudSprites;
     public void Start()
     {
-        sr.sprite = cloudSprites[Random.Range(0, 3)];
+        Random.InitState(System.DateTime.Now.Millisecond * System.DateTime.Now.Second);
+        sr.sprite = cloudSprites[Random.Range(0, 5)];
     }
     public void Update()
     {

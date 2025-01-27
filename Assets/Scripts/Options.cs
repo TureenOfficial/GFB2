@@ -296,6 +296,7 @@ public class Options : MonoBehaviour
             PlayerPrefs.SetString("Mode", "Default");
             PlayerPrefs.SetInt("alltimeflarps", 0);
             PlayerPrefs.SetString("headwear", "None");
+            PlayerPrefs.SetInt("crowncanactive", 0);
     }
     public void DeleteAll()
     {
@@ -337,6 +338,7 @@ public class Options : MonoBehaviour
         PlayerPrefs.GetInt("level") == 0 &&
         PlayerPrefs.GetString("flarpname") == "Birb" &&
         PlayerPrefs.GetString("headwear") == "None" &&
+        PlayerPrefs.GetInt("crowncanactive") == 0 &&
         PlayerPrefs.GetInt("trophy1active") == 0 &&
         PlayerPrefs.GetInt("trophy2active") == 0 &&
         PlayerPrefs.GetInt("trophy3active") == 0;
