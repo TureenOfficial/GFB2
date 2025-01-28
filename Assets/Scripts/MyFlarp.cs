@@ -8,6 +8,7 @@ public class MyFlarp : MonoBehaviour
     public TMP_Text leveltext;
     public TMP_Text flarpname;
     public TMP_Text totflarps;
+    public TMP_Text levelSubtitle;
 
     void Start()
     {
@@ -19,7 +20,14 @@ public class MyFlarp : MonoBehaviour
         {
             totflarps.text = "TOTAL FLARPS: " + PlayerPrefs.GetInt("alltimeflarps").ToString();
         }
-
+        if(PlayerPrefs.GetInt("level") >= 1000)
+        {
+            levelSubtitle.text = $"LEVEL: {PlayerPrefs.GetString("levelTitle")} BIRB (1K+)";
+        }
+        else
+        {
+            levelSubtitle.text = $"LEVEL: {PlayerPrefs.GetString("levelTitle")} BIRB ({PlayerPrefs.GetInt("level")})";
+        }
         tdtext.text = "TIMES DIED: " + PlayerPrefs.GetInt("timesdead").ToString();
         highscoretext.text = "HIGHSCORE: " + PlayerPrefs.GetInt("Highscore").ToString();
         leveltext.text = "LEVEL: " + PlayerPrefs.GetInt("level").ToString();

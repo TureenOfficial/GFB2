@@ -22,13 +22,14 @@ public class LOGIC : MonoBehaviour, ISingleton
     public Animation animationPointGained;
     public GameObject highscorelight;
     public XPGrant xpGrant;
+    public DiscordRPC rpcScript;
     public AnimationClip[] AnimationTypePointGained;
     
     public void Start()
     {
+        PlayerPrefs.SetInt("flarpsThisRoundOnly", 0);
         totalflarps = 0;
         fs = GameObject.FindGameObjectWithTag("Player").GetComponent<FlarpScript>(); 
-        
     }
     public void Update()
     {
@@ -52,6 +53,8 @@ public class LOGIC : MonoBehaviour, ISingleton
     public void AddToTotal()
     {
         totalflarps += 1;
+        PlayerPrefs.SetInt("flarpsThisRoundOnly", PlayerPrefs.GetInt("flarpsThisRoundOnly") + 1);
+        rpcScript.ChangeActivity();
         aud.PlayOneShot(pointgained, 1.6f);
         if(totalflarps > PlayerPrefs.GetInt("Highscore"))
         {

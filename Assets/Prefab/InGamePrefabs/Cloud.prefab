@@ -100,17 +100,6 @@ MonoBehaviour:
   sr: {fileID: 3638418098881670154}
   cloudSprites:
   - {fileID: 21300000, guid: 561d842fac4f6c546aecc44ac9b03892, type: 3}
-  - {fileID: 21300000, guid: 3ebc77e52ab1f7b499556a911b43e707, type: 3}
-  - {fileID: 21300000, guid: 299f9771258c7b445b6ea2893728e51e, type: 3}
-  - {fileID: 21300000, guid: bf87dd0370f317042a579b9351167af6, type: 3}
-  - {fileID: 21300000, guid: 6b08265a8caf87946901f4cb328cb4eb, type: 3}
-  - {fileID: 21300000, guid: bf87dd0370f317042a579b9351167af6, type: 3}
-  - {fileID: 21300000, guid: 299f9771258c7b445b6ea2893728e51e, type: 3}
-  - {fileID: 21300000, guid: 561d842fac4f6c546aecc44ac9b03892, type: 3}
-  - {fileID: 21300000, guid: 3ebc77e52ab1f7b499556a911b43e707, type: 3}
-  - {fileID: 21300000, guid: 6b08265a8caf87946901f4cb328cb4eb, type: 3}
-  - {fileID: 21300000, guid: 561d842fac4f6c546aecc44ac9b03892, type: 3}
   - {fileID: 21300000, guid: 299f9771258c7b445b6ea2893728e51e, type: 3}
   - {fileID: 21300000, guid: 3ebc77e52ab1f7b499556a911b43e707, type: 3}
-  - {fileID: 21300000, guid: bf87dd0370f317042a579b9351167af6, type: 3}
   - {fileID: 21300000, guid: 6b08265a8caf87946901f4cb328cb4eb, type: 3}

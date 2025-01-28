@@ -123,6 +123,7 @@ public class LevelScript : MonoBehaviour
             break;
         }
 
+        PlayerPrefs.SetString("levelTitle", currentLevelTitle);
         StageText.text = "STAGE: " + currentLevelTitle + " BIRB";        
     }
 }
