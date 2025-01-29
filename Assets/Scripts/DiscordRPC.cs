@@ -1,89 +1,80 @@
 using System;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Diagnostics;
 
 public class DiscordRPC : MonoBehaviour
 {
     Discord.Discord discord;
-    private long unixTimeUnreset;
-    void Start()
+
+    public void Start()
     {
         discord = new Discord.Discord(1333840279895146627, (ulong)Discord.CreateFlags.NoRequireDiscord);
-
-        if(SceneManager.GetActiveScene().name == "FlarpMain")
-            {
-                unixTimeUnreset = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-            }
-
         ChangeActivity();
     }
-    void OnDisable()
+    public void OnDisable()
     {
-        discord.Dispose();
+        discord!?.Dispose();
+    }
+    public void Update()
+    {
+        discord.RunCallbacks();
     }
     public void ChangeActivity()
     {
-        var activityManager = discord.GetActivityManager();
+        var activityManager = discord.GetActivityManager(); 
         Scene scene = SceneManager.GetActiveScene();
         long unixTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-    
+
+        long startupUnixTimestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds() - (long)Time.realtimeSinceStartup;
+        string state_ = "Playing Great Flarp Birb 2";
+        string details_ = "Flarping Everywhere";
+
+
         switch(scene.name)
         {
             case "FlarpMain":
             {
-                var activity = new Discord.Activity()
-                {
-                        State = $"Playing {PlayerPrefs.GetString("Mode")} Mode - {PlayerPrefs.GetInt("flarpsThisRoundOnly")} Flarps",
-                        Details = $"In Game",
-                        Timestamps = {Start = unixTimeUnreset}
-                };
-
-                activityManager.UpdateActivity(activity, (res) => {});
-
-                break;
-            }
-            case "OptionsMenu":
-            {
-                var activity = new Discord.Activity
-                {
-                        State = $"In Options Menu",
-                        Timestamps = {Start = unixTime}
-                };
-
-                activityManager.UpdateActivity(activity, (res) => {});
-
-                break;
-            }
-            case "MainMenu":
-            {
-                var activity = new Discord.Activity
-                {
-                        State = $"In Main Menu",
-                        Timestamps = {Start = unixTime}
-                };
-
-                activityManager.UpdateActivity(activity, (res) => {});
-
+                state_ = $"Playing {PlayerPrefs.GetString("Mode")} Mode - {PlayerPrefs.GetInt("flarpsThisRoundOnly"), 0} Flarps";
+                details_ = "Flarping Everywhere";
                 break;
             }
             case "LevelMenu":
             {
-                var activity = new Discord.Activity
+                state_ = $"Viewing Level - Level {PlayerPrefs.GetInt("level")}";
+                if(PlayerPrefs.GetInt("level") < 1)
                 {
-                        State = $"In Level Menu",             
-                        Timestamps = {Start = unixTime}
+                    details_ = "Do you even Flarp bro?";
+                }
+                else
+                {
+                    details_ = "100% Flarpious";
                 };
-
-                activityManager.UpdateActivity(activity, (res) => {});
-
+                break;
+            }
+            case "MainMenu":
+            {
+                state_ = "In The Menus";
+                break;
+            }
+            default: 
+            {
+                state_ = "Playing Great Flarp Birb 2";
+                details_ = "Flarping Everywhere";
                 break;
             }
         }
-    }
 
-    void Update()
-    {
-        discord.RunCallbacks();
+                var activity = new Discord.Activity()
+                {
+                        Timestamps = {Start = startupUnixTimestamp},
+                        State = state_,
+                        Details = details_
+                };
+                activityManager.UpdateActivity(activity, (res) => {UnityEngine.Debug.Log("success");});
+
+            
     }
 
 }

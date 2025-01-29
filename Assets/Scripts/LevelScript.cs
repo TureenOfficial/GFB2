@@ -6,6 +6,7 @@ using UnityEngine;
 public class LevelScript : MonoBehaviour
 {
     public int level;
+    public float percentage;
     public int xpToNext;
     public int stage;
     public int xp;
@@ -63,8 +64,18 @@ public class LevelScript : MonoBehaviour
         TrueXPText.text = "CURRENT XP: " + PlayerPrefs.GetInt("xp");
         xpText.text = "XP TO NEXT LEVEL: " + xpToNext;
         LevelStage.text = "LEVEL: " + PlayerPrefs.GetInt("level");
-        float percentage = (xp / (200f * level)) * 100;
-        percentageLevel.value = percentage;         
+
+        if(level > 0)
+        {
+            float requiredXP = 200f * level;
+            percentage = Mathf.Clamp((xp / requiredXP) * 100f, 0f, 100f);
+        }
+        else if(level == 0)
+        {
+            float requiredXP = 200f;
+            percentage = Mathf.Clamp((xp / requiredXP) * 100f, 0f, 100f);
+        }
+        percentageLevel.value = percentage;
 
         if (level <= 0)
         {
