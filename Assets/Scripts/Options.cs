@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,9 +8,11 @@ public class Options : MonoBehaviour
 {
     //Wow thats  A Lot!  Lot!     Lot!
     public float audVelocity;
+    public  GameObject discordRPCobject;
     public GameObject headwearDropdown;
     public UnityEngine.UI.Toggle lyricalcensortoggle;
     public UnityEngine.UI.Toggle cloudToggle;
+    public UnityEngine.UI.Toggle discordRPCToggle;
     public bool fullscreen;
     public int res;
     public int hz;
@@ -210,6 +213,17 @@ public class Options : MonoBehaviour
             PlayerPrefs.SetInt("cloudsActive", 0);
         }
     }
+    public void DiscordRPCToggle()
+    {
+        if(discordRPCToggle.isOn)
+        {
+            PlayerPrefs.SetInt("rpcOn", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("rpcOn", 0);
+        }
+    }
     public void EyelashToggle()
     {
         if(eyelashToggle.isOn)
@@ -241,7 +255,14 @@ public class Options : MonoBehaviour
             {
                 lyricalcensortoggle.isOn = false;
             }
-
+            if(PlayerPrefs.GetInt("rpcOn") == 1)
+            {
+                discordRPCToggle.isOn = true;
+            }
+            else
+            {
+                discordRPCToggle.isOn = false;
+            }
             if(PlayerPrefs.GetInt("cloudsActive") == 1)
             {
                 cloudToggle.isOn = true;
@@ -276,6 +297,7 @@ public class Options : MonoBehaviour
     }   
     public void Defaults()
     {   
+            PlayerPrefs.SetInt("rpcOn", 0);
             PlayerPrefs.SetInt("cloudsActive", 1);
             PlayerPrefs.SetInt("OffensiveItems", 0);
             PlayerPrefs.SetInt("fps", 5);
@@ -327,6 +349,7 @@ public class Options : MonoBehaviour
     
         //subject for readability
         bool isDefaultState = 
+        PlayerPrefs.GetInt("rpcOn") == 1 &&
         PlayerPrefs.GetInt("cloudsActive") == 1 &&
         PlayerPrefs.GetInt("lashes") == 0 &&
         PlayerPrefs.GetInt("fps") == 5 &&

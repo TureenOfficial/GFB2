@@ -54,7 +54,10 @@ public class LOGIC : MonoBehaviour, ISingleton
     {
         totalflarps += 1;
         PlayerPrefs.SetInt("flarpsThisRoundOnly", PlayerPrefs.GetInt("flarpsThisRoundOnly") + 1);
-        rpcScript.ChangeActivity();
+        if(PlayerPrefs.GetInt("rpcOn") == 1)
+        {
+            rpcScript.ChangeActivity();
+        }
         aud.PlayOneShot(pointgained, 1.6f);
         if(totalflarps > PlayerPrefs.GetInt("Highscore"))
         {
@@ -66,6 +69,7 @@ public class LOGIC : MonoBehaviour, ISingleton
             animationPointGained.clip = AnimationTypePointGained[0];
             animationPointGained.Play();
         }
+
     }
     public void AddCollectable()
     {

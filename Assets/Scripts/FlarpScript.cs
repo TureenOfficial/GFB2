@@ -1,5 +1,6 @@
 using TMPro;
 using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
 public class FlarpScript : MonoBehaviour, ISingleton
 {
@@ -245,5 +246,15 @@ public class FlarpScript : MonoBehaviour, ISingleton
         PlayerPrefs.SetInt("crowncanactive", 1);
         PlayerPrefs.SetInt(trophytype + "active", 1);
         PlayerPrefs.SetInt("notifnew", 1);
+    }
+    public IEnumerator Explode() //goes unused currently (v1.1)
+    {
+        aud.pitch = 0.5f;
+        Time.timeScale = 0.5f;    
+        Animation animation = GetComponent<Animation>();
+        animation.Play();
+        yield return new WaitUntil(() => !animation.isPlaying);
+        aud.Stop();
+        Time.timeScale = 1f;
     }
 }

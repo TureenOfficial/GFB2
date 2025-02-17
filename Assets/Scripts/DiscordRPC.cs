@@ -1,17 +1,26 @@
 using System;
-using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Diagnostics;
 
 public class DiscordRPC : MonoBehaviour
 {
-    Discord.Discord discord;
-
+    Discord.Discord discord = new Discord.Discord(1333840279895146627, (ulong)Discord.CreateFlags.NoRequireDiscord);    
+    string state_ = "Playing Great Flarp Birb 2";
+    string details_ = "";
+    string name_ = "Great Flarp Birb 2";
+    public Scene scene;
     public void Start()
     {
-        discord = new Discord.Discord(1333840279895146627, (ulong)Discord.CreateFlags.NoRequireDiscord);
-        ChangeActivity();
+        scene = SceneManager.GetActiveScene();
+
+        if(PlayerPrefs.GetInt("rpcOn") == 1)
+        {
+            ChangeActivity();
+        }
+        else
+        {
+            print($"could not change: rpc = {PlayerPrefs.GetInt("rpcOn")}");
+        }
     }
     public void OnDisable()
     {
@@ -24,12 +33,8 @@ public class DiscordRPC : MonoBehaviour
     public void ChangeActivity()
     {
         var activityManager = discord.GetActivityManager(); 
-        Scene scene = SceneManager.GetActiveScene();
-        long unixTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
 
         long startupUnixTimestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds() - (long)Time.realtimeSinceStartup;
-        string state_ = "Playing Great Flarp Birb 2";
-        string details_ = "Flarping Everywhere";
 
 
         switch(scene.name)
@@ -45,12 +50,18 @@ public class DiscordRPC : MonoBehaviour
                 state_ = $"Viewing Level - Level {PlayerPrefs.GetInt("level")}";
                 if(PlayerPrefs.GetInt("level") < 1)
                 {
-                    details_ = "Do you even Flarp bro?";
+                    details_ = "Do You Even Flarp Bro?";
                 }
                 else
                 {
-                    details_ = "100% Flarpious";
+                    details_ = "100% Flarpious Certified";
                 };
+                break;
+            }
+            case "OptionsMenu":
+            {
+                state_ = $"Editing Options";
+                details_ = "Flarping the Settings...";
                 break;
             }
             case "MainMenu":
@@ -68,13 +79,12 @@ public class DiscordRPC : MonoBehaviour
 
                 var activity = new Discord.Activity()
                 {
+                        Name = name_,
                         Timestamps = {Start = startupUnixTimestamp},
                         State = state_,
                         Details = details_
                 };
-                activityManager.UpdateActivity(activity, (res) => {UnityEngine.Debug.Log("success");});
-
-            
+                activityManager.UpdateActivity(activity, (res) => {});
     }
 
 }
